@@ -410,5 +410,14 @@
         }
     }
 
+    Player.prototype.fireBullet = function() {
+        // create the bullet
+        var position = {x: this.x, y: this.y};
+        this.level.createBullet(position);
+
+        // play the shot sound
+        this.level.levelContentManager.playerFire.play();
+    }
+
     window.Player = Player;
 } (window));
