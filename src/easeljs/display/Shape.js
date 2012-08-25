@@ -1,9 +1,8 @@
 /*
-* Shape by Grant Skinner. Dec 5, 2010
-* Visit http://easeljs.com/ for documentation, updates and examples.
+* Shape
+* Visit http://createjs.com/ for documentation, updates and examples.
 *
-*
-* Copyright (c) 2010 Grant Skinner
+* Copyright (c) 2010 gskinner.com, inc.
 * 
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
@@ -27,14 +26,10 @@
 * OTHER DEALINGS IN THE SOFTWARE.
 */
 
-/**
-* The Easel Javascript library provides a retained graphics mode for canvas 
-* including a full, hierarchical display list, a core interaction model, and 
-* helper classes to make working with Canvas much easier.
-* @module EaselJS
-**/
+// namespace:
+this.createjs = this.createjs||{};
 
-(function(window) {
+(function() {
 
 /**
 * A Shape allows you to display vector art in the display list. It composites a Graphics instance which exposes all of the vector
@@ -47,7 +42,7 @@
 var Shape = function(graphics) {
   this.initialize(graphics);
 }
-var p = Shape.prototype = new DisplayObject();
+var p = Shape.prototype = new createjs.DisplayObject();
 
 // public properties:
 	/**
@@ -73,7 +68,7 @@ var p = Shape.prototype = new DisplayObject();
 	 **/
 	p.initialize = function(graphics) {
 		this.DisplayObject_initialize();
-		this.graphics = graphics ? graphics : new Graphics();
+		this.graphics = graphics ? graphics : new createjs.Graphics();
 	}
 
 	/**
@@ -84,7 +79,7 @@ var p = Shape.prototype = new DisplayObject();
 	 * @return {Boolean} Boolean indicating whether the Shape would be visible if drawn to a canvas
 	 **/
 	p.isVisible = function() {
-		return this.visible && this.alpha > 0 && this.scaleX != 0 && this.scaleY != 0 && this.graphics;
+		return Boolean(this.visible && this.alpha > 0 && this.scaleX != 0 && this.scaleY != 0 && this.graphics);
 	}
 
 	/**
@@ -132,5 +127,5 @@ var p = Shape.prototype = new DisplayObject();
 		return "[Shape (name="+  this.name +")]";
 	}
 
-window.Shape = Shape;
-}(window));
+createjs.Shape = Shape;
+}());

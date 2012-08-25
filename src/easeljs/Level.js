@@ -47,7 +47,7 @@
         this.ReachedExit = false;
         this.IsHeroDied = false;
         // You've got 120s to finish the level
-        this.TimeRemaining = 600;
+        this.TimeRemaining = 120;
         // Saving when at what time you've started the level
         this.InitialGameTime = Ticker.getTime();
         // Creating a random background based on the 3 layers available in 3 versions
@@ -369,7 +369,6 @@
         this.levelStage.addChild(backgroundSeqTile1);
         this.levelStage.addChild(backgroundSeqTile2);
         this.levelStage.addChild(backgroundSeqTile3);
-        console.log(this);
     };
 
     // Method to call once everything has been setup in the level
@@ -399,6 +398,10 @@
         // Adding our brillant hero
         this.levelStage.addChild(this.Hero);
         // Playing the background music
+
+        this.levelContentManager.startLavel.play();
+
+        this.levelContentManager.globalMusic.volume = 0.2;
         this.levelContentManager.globalMusic.play();
 
         // add a text object to output the current FPS:
@@ -455,13 +458,7 @@
         //fpsLabel.text = Math.round(Ticker.getMeasuredFPS()) + " fps";
         //console.log(this.Hero.x);
         fpsLabel.text = this.Hero.x + " fps";
-
-
-
-        if (this.Hero.x > 480) {
-
-            this.levelStage.setTransform(this.levelStage.x - (this.levelStage.x - (480 - this.Hero.x))*0.02);
-        }
+        this.levelStage.setTransform(-this.Hero.x+480);
         // update the stage:
         this.levelStage.update();
     };

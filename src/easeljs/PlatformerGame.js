@@ -18,7 +18,6 @@
     var KEYCODE_W = 87;
     var KEYCODE_A = 65;
     var KEYCODE_D = 68;
-    var KEYCODE_B = 66;
     
     // The number of levels in the Levels directory of our content. We assume that
     // levels in our content are 0-based and that all numbers under this constant

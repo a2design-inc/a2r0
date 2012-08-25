@@ -64,6 +64,7 @@ function ContentManager(stage, width, height) {
     this.loseOverlay = new Image();
     this.diedOverlay = new Image();
     this.globalMusic = new Audio();
+    this.startLavel = new Audio();
     this.playerKilled = new Audio();
     this.playerJump = new Audio();
     this.playerFall = new Audio();
@@ -116,10 +117,6 @@ function ContentManager(stage, width, height) {
         }
 
         SetDownloadParameters(this.imgPlayer, "img/Player.png");
-        SetDownloadParameters(this.imgRobot[0], "img/Robot0.png");
-        SetDownloadParameters(this.imgRobot[1], "img/Robot1.png");
-        SetDownloadParameters(this.imgRobot[2], "img/Robot2.png");
-
         SetDownloadParameters(this.imgMonsterA, "img/MonsterA.png");
         SetDownloadParameters(this.imgMonsterB, "img/MonsterB.png");
         SetDownloadParameters(this.imgMonsterC, "img/MonsterC.png");
