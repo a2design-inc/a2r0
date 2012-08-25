@@ -455,7 +455,13 @@
         //fpsLabel.text = Math.round(Ticker.getMeasuredFPS()) + " fps";
         //console.log(this.Hero.x);
         fpsLabel.text = this.Hero.x + " fps";
-        this.levelStage.setTransform(-this.Hero.x+480);
+
+
+
+        if (this.Hero.x > 480) {
+
+            this.levelStage.setTransform(this.levelStage.x - (this.levelStage.x - (480 - this.Hero.x))*0.02);
+        }
         // update the stage:
         this.levelStage.update();
     };
