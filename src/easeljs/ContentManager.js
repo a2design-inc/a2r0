@@ -54,6 +54,11 @@ function ContentManager(stage, width, height) {
     this.imgExit = new Image();
     this.imgPlatform = new Image();
     this.imgPlayer = new Image();
+    this.imgRobot = new Array(
+        new Image(),
+        new Image(),
+        new Image()
+    );
     this.imgGem = new Image();
     this.winOverlay = new Image();
     this.loseOverlay = new Image();
@@ -111,6 +116,10 @@ function ContentManager(stage, width, height) {
         }
 
         SetDownloadParameters(this.imgPlayer, "img/Player.png");
+        SetDownloadParameters(this.imgRobot[0], "img/Robot0.png");
+        SetDownloadParameters(this.imgRobot[1], "img/Robot1.png");
+        SetDownloadParameters(this.imgRobot[2], "img/Robot2.png");
+
         SetDownloadParameters(this.imgMonsterA, "img/MonsterA.png");
         SetDownloadParameters(this.imgMonsterB, "img/MonsterB.png");
         SetDownloadParameters(this.imgMonsterC, "img/MonsterC.png");

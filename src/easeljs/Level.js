@@ -28,6 +28,9 @@
 
     var StaticTile = new Tile(null, Enum.TileCollision.Passable, 0, 0);
 
+    var levelWidth = 320;
+    var levelHeight = 20;
+
     function Level(stage, contentManager, textLevel, gameWidth, gameHeight) {
         this.levelContentManager = contentManager;
         this.levelStage = stage;
@@ -44,15 +47,15 @@
         this.ReachedExit = false;
         this.IsHeroDied = false;
         // You've got 120s to finish the level
-        this.TimeRemaining = 120;
+        this.TimeRemaining = 600;
         // Saving when at what time you've started the level
         this.InitialGameTime = Ticker.getTime();
         // Creating a random background based on the 3 layers available in 3 versions
         this.CreateAndAddRandomBackground();
         // Building a matrix of characters that will be replaced by the level {x}.txt
-        this.textTiles = Array.matrix(15, 20, "|");
+        this.textTiles = Array.matrix(levelHeight, levelWidth, "|");
         // Physical structure of the level.
-        this.tiles = Array.matrix(15, 20, "|");
+        this.tiles = Array.matrix(levelHeight, levelWidth, "|");
         this.LoadTiles(textLevel);
     };
 
@@ -71,9 +74,9 @@
     // Transforming the long single line of text into
     // a 2D array of characters
     Level.prototype.ParseLevelLines = function (levelLine) {
-        for (var i = 0; i < 15; i++) {
-            for (var j = 0; j < 20; j++) {
-                this.textTiles[i][j] = levelLine.charAt((i * 20) + j);
+        for (var i = 0; i < levelHeight; i++) {
+            for (var j = 0; j < levelWidth; j++) {
+                this.textTiles[i][j] = levelLine.charAt((i * levelWidth) + j);
             }
         }
     };
@@ -90,8 +93,8 @@
         this.ParseLevelLines(fileStream);
 
         // Loop over every tile position,
-        for (var i = 0; i < 15; i++) {
-            for (var j = 0; j < 20; j++) {
+        for (var i = 0; i < levelHeight; i++) {
+            for (var j = 0; j < levelWidth; j++) {
                 this.tiles[i][j] = this.LoadTile(this.textTiles[i][j], j, i);
             }
         }
@@ -324,14 +327,14 @@
     /// Width of level measured in tiles.
     /// </summary>
     Level.prototype.Width = function () {
-        return 20;
+        return levelWidth;
     };
 
     /// <summary>
     /// Height of the level measured in tiles.
     /// </summary>
     Level.prototype.Height = function () {
-        return 15;
+        return levelHeight;
     };
 
     /// <summary>
@@ -357,7 +360,7 @@
     // the 3 different layers available
     Level.prototype.CreateAndAddRandomBackground = function () {
         // random number between 0 & 2.
-        var randomnumber = Math.floor(Math.random() * 3);
+        var randomnumber = 0;//Math.floor(Math.random() * 3);
 
         backgroundSeqTile1 = new Bitmap(this.levelContentManager.imgBackgroundLayers[0][randomnumber]);
         backgroundSeqTile2 = new Bitmap(this.levelContentManager.imgBackgroundLayers[1][randomnumber]);
@@ -366,6 +369,7 @@
         this.levelStage.addChild(backgroundSeqTile1);
         this.levelStage.addChild(backgroundSeqTile2);
         this.levelStage.addChild(backgroundSeqTile3);
+        console.log(this);
     };
 
     // Method to call once everything has been setup in the level
@@ -374,8 +378,8 @@
         // Adding all tiles to the EaselJS Stage object
         // This is the platform tile where the hero & enemies will
         // be able to walk onto
-        for (var i = 0; i < 15; i++) {
-            for (var j = 0; j < 20; j++) {
+        for (var i = 0; i < levelHeight; i++) {
+            for (var j = 0; j < levelWidth; j++) {
                 if (!!this.tiles[i][j] && !this.tiles[i][j].empty) {
                     this.levelStage.addChild(this.tiles[i][j]);
                 }
@@ -423,7 +427,7 @@
             this.Score += seconds * PointsPerSecond;
         }
         else {
-            this.TimeRemaining = 120 - ElapsedGameTime;
+            this.TimeRemaining = 600 - ElapsedGameTime;
 
             if (!this.IsHeroDied)
                 this.UpdateGems();
@@ -448,8 +452,10 @@
         if (this.TimeRemaining < 0)
             this.TimeRemaining = 0;
 
-        fpsLabel.text = Math.round(Ticker.getMeasuredFPS()) + " fps";
-
+        //fpsLabel.text = Math.round(Ticker.getMeasuredFPS()) + " fps";
+        //console.log(this.Hero.x);
+        fpsLabel.text = this.Hero.x + " fps";
+        this.levelStage.setTransform(-this.Hero.x+480);
         // update the stage:
         this.levelStage.update();
     };
