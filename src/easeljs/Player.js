@@ -116,6 +116,7 @@
 
         // 1 = right & -1 = left & 0 = idle
         this.direction = 0;
+        this.lastdirection = 1;
 
         // starting directly at the first frame of the walk_right sequence
         this.currentFrame = 66;
@@ -421,7 +422,7 @@
     Player.prototype.fireBullet = function() {
         // create the bullet
         var position = {x: this.x, y: this.y};
-        this.level.createBullet(position);
+        this.level.createBullet(position, this.lastdirection, this.level.levelContentManager.imgBullet[0]);
     }
 
     window.Player = Player;

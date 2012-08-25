@@ -268,10 +268,12 @@
             case KEYCODE_A: ;
             case KEYCODE_LEFT:
                 this.level.Hero.direction = -1;
+                this.level.Hero.lastdirection = -1;
                 break;
             case KEYCODE_D: ;
             case KEYCODE_RIGHT:
                 this.level.Hero.direction = 1;
+                this.level.Hero.lastdirection = 1;
                 break;
             case KEYCODE_W:
                 this.level.Hero.isJumping = true;
@@ -292,8 +294,12 @@
         switch (e.keyCode) {
             case KEYCODE_A: ;
             case KEYCODE_LEFT: ;
+                this.level.Hero.lastdirection = -1;
+                this.level.Hero.direction = 0;
+                break;
             case KEYCODE_D: ;
             case KEYCODE_RIGHT:
+                this.level.Hero.lastdirection = 1;
                 this.level.Hero.direction = 0;
                 break;
             case KEYCODE_W:
