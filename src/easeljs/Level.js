@@ -363,14 +363,14 @@
         // random number between 0 & 2.
         var randomnumber = 0;//Math.floor(Math.random() * 3);
 
-        backgroundSeqTile1 = new Bitmap(this.levelContentManager.imgBackgroundLayers[0][randomnumber]);
+//        backgroundSeqTile1 = new Bitmap(this.levelContentManager.imgBackgroundLayers[0][randomnumber]);
 //        backgroundSeqTile2 = new Bitmap(this.levelContentManager.imgBackgroundLayers[1][randomnumber]);
 //        backgroundSeqTile3 = new Bitmap(this.levelContentManager.imgBackgroundLayers[2][randomnumber]);
 
-        this.levelStage.addChild(backgroundSeqTile1);
+//        this.levelStage.addChild(backgroundSeqTile1);
 //        this.levelStage.addChild(backgroundSeqTile2);
 //        this.levelStage.addChild(backgroundSeqTile3);
-        console.log(this);
+//        console.log(this);
     };
 
     // Method to call once everything has been setup in the level
