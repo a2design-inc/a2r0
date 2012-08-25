@@ -534,10 +534,13 @@
     };
 
     Level.prototype.createBullet = function(position) {
-        var i = 0;
         var len = this.bulletStream.length;
 
-        this.bulletStream.push(new Bullet(this, position , 1, '#FF0000'));
+        if (len <= 1)   {
+            this.bulletStream.push(new Bullet(this, position , 1, '#FF0000'));
+            // play the shot sound
+            this.levelContentManager.playerFire.play();
+        }
     }
 
     window.Level = Level;
