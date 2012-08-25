@@ -540,6 +540,8 @@
             this.bulletStream.push(new Bullet(this, position , 1, '#FF0000'));
             // play the shot sound
             this.levelContentManager.playerFire.play();
+        } else {
+            this.levelContentManager.playerFireNo.play();
         }
     }
 

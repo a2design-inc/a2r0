@@ -37,8 +37,8 @@
     /// Gets a rectangle which bounds this enemy in world space.
     /// </summary>
     Bullet.prototype.BoundingRectangle = function () {
-        var left = parseInt(Math.round(this.x - 32) + localBounds.x);
-        var top = parseInt(Math.round(this.y - 64) + localBounds.y);
+        var left = parseInt(Math.round(this.shape.x - 32) + localBounds.x);
+        var top = parseInt(Math.round(this.shape.y - 64) + localBounds.y);
 
         return new XNARectangle(left, top, localBounds.width, localBounds.height);
     };
