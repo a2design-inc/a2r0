@@ -18,7 +18,7 @@
     /// <summary>
     /// The speed at which this enemy moves along the X axis.
     /// </summary>
-    var MoveSpeed = 64.0;
+    var MoveSpeed = 54.0;
 
     // Local bounds used to calculate collision between enemies and the hero
     var localBounds;
@@ -26,7 +26,7 @@
     // Index used for the naming of the monsters
     var monsterIndex = 0;
 
-    var globalTargetFPS = 17;
+    var globalTargetFPS = 27;
 
     var StaticTile = new Tile(null, Enum.TileCollision.Passable, 0, 0);
 
@@ -49,10 +49,10 @@
 
         var localSpriteSheet = new SpriteSheet({
             images: [imgMonster], //image to use
-            frames: { width: 64, height: 64, regX: 32, regY: 64 },
+            frames: { width: 100, height: 110, regX: 50, regY: 110 },
             animations: {
-                walk: [0, 9, "walk", 4],
-                idle: [10, 20, "idle", 4]
+                walk: [0, 0, "walk", 4],
+                idle: [0, 0, "idle", 4]
             }
         });
 

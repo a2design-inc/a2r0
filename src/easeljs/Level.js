@@ -56,6 +56,7 @@
         this.textTiles = Array.matrix(levelHeight, levelWidth, "|");
         // Physical structure of the level.
         this.tiles = Array.matrix(levelHeight, levelWidth, "|");
+        this.bulletStream = [];
         this.LoadTiles(textLevel);
     };
 
@@ -419,6 +420,7 @@
         var ElapsedGameTime = (Ticker.getTime() - this.InitialGameTime) / 1000;
 
         this.Hero.tick();
+        this.UpdateBullets();
 
         if (!this.Hero.IsAlive || this.TimeRemaining === 0) {
             this.Hero.ApplyPhysics();
@@ -458,6 +460,7 @@
         //fpsLabel.text = Math.round(Ticker.getMeasuredFPS()) + " fps";
         //console.log(this.Hero.x);
         fpsLabel.text = this.Hero.x + " fps";
+
 
         if (this.Hero.x > 480) {
             this.levelStage.setTransform(-this.Hero.x+480);
@@ -500,6 +503,12 @@
         }
     };
 
+    Level.prototype.UpdateBullets = function () {
+        for (var i = 0; i < this.bulletStream.length; i++) {
+            this.bulletStream[i].tick();
+        }
+    };
+
     /// <summary>
     /// Called when the player is killed.
     /// </summary>
@@ -523,6 +532,13 @@
     Level.prototype.StartNewLife = function () {
         this.Hero.Reset(this.Start);
     };
+
+    Level.prototype.createBullet = function(position) {
+        var i = 0;
+        var len = this.bulletStream.length;
+
+        this.bulletStream.push(new Bullet(this, position , 1, '#FF0000'));
+    }
 
     window.Level = Level;
 } (window));

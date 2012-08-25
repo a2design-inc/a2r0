@@ -12,13 +12,15 @@
 (function (window) {
     //usefull keycodes
     var KEYCODE_SPACE = 32;
+    var KEYCODE_ENTER = 13;
     var KEYCODE_UP = 38;
     var KEYCODE_LEFT = 37;
     var KEYCODE_RIGHT = 39;
     var KEYCODE_W = 87;
     var KEYCODE_A = 65;
     var KEYCODE_D = 68;
-    
+    var KEYCODE_B = 66;
+
     // The number of levels in the Levels directory of our content. We assume that
     // levels in our content are 0-based and that all numbers under this constant
     // have a level file present. This allows us to not need to check for the file
@@ -276,8 +278,11 @@
                 this.continuePressed = true;
                 break;
             case KEYCODE_B:
-                //console.log(this);
                 this.level.Hero.ChangeSkin();
+                break;
+            case KEYCODE_ENTER:
+                this.level.Hero.fireBullet();
+                break;
         }
     };
 

@@ -68,6 +68,7 @@ function ContentManager(stage, width, height) {
     this.playerKilled = new Audio();
     this.playerJump = new Audio();
     this.playerFall = new Audio();
+    this.playerFire = new Audio();
     this.exitReached = new Audio();
     this.gemCollected = [];
 
@@ -98,6 +99,7 @@ function ContentManager(stage, width, height) {
             SetAudioDownloadParameters(this.playerKilled, "sounds/PlayerKilled" + audioExtension);
             SetAudioDownloadParameters(this.playerJump, "sounds/Jump" + audioExtension);
             SetAudioDownloadParameters(this.playerFall, "sounds/PlayerFall" + audioExtension);
+            SetAudioDownloadParameters(this.playerFire, "sounds/PlayerFire" + audioExtension);
             SetAudioDownloadParameters(this.exitReached, "sounds/ExitReached" + audioExtension);
                 // Used to simulate multi-channels audio 
                 // As HTML5 Audio in browsers is today too limited
