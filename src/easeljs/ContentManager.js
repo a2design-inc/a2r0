@@ -42,6 +42,10 @@ function ContentManager(stage, width, height) {
     this.imgMonsterB = new Image(); 
     this.imgMonsterC = new Image(); 
     this.imgMonsterD = new Image();
+    this.imgMonsterE = new Image();
+    this.imgMonsterF = new Image();
+    this.imgMonsterL = new Image();
+    this.imgMonsterH = new Image();
     this.imgBlockA0 = new Image();
     this.imgBlockA1 = new Image();
     this.imgBlockA2 = new Image();
@@ -132,6 +136,10 @@ function ContentManager(stage, width, height) {
         SetDownloadParameters(this.imgMonsterB, "img/MonsterB.png");
         SetDownloadParameters(this.imgMonsterC, "img/MonsterC.png");
         SetDownloadParameters(this.imgMonsterD, "img/MonsterD.png");
+        SetDownloadParameters(this.imgMonsterE, "img/MonsterE.png");
+        SetDownloadParameters(this.imgMonsterF, "img/MonsterF.png");
+        SetDownloadParameters(this.imgMonsterL, "img/MonsterL.png");
+        SetDownloadParameters(this.imgMonsterH, "img/MonsterH.png");
 
         SetDownloadParameters(this.winOverlay, "overlays/you_win.png");
         SetDownloadParameters(this.loseOverlay, "overlays/you_lose.png");

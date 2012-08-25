@@ -163,6 +163,22 @@
                 return this.LoadEnemyTile(x, y, "MonsterD");
                 break;
 
+            case 'E':
+                return this.LoadEnemyTile(x, y, "MonsterE");
+                break;
+
+            case 'F':
+                return this.LoadEnemyTile(x, y, "MonsterF");
+                break;
+
+            case 'L':
+                return this.LoadEnemyTile(x, y, "MonsterL");
+                break;
+
+            case 'H':
+                return this.LoadEnemyTile(x, y, "MonsterH");
+                break;
+
             // Platform block                                                                                      
             case '~':
                 return this.LoadVarietyTile("BlockB", 2, Enum.TileCollision.Platform, x, y);
@@ -325,6 +341,18 @@
             case "MonsterD":
                 this.Enemies.push(new Enemy(this, position, this.levelContentManager.imgMonsterD));
                 break;
+            case "MonsterE":
+                this.Enemies.push(new Enemy(this, position, this.levelContentManager.imgMonsterE));
+                break;
+            case "MonsterF":
+                this.Enemies.push(new Enemy(this, position, this.levelContentManager.imgMonsterF));
+                break;
+            case "MonsterL":
+                this.Enemies.push(new Enemy(this, position, this.levelContentManager.imgMonsterL));
+                break;
+            case "MonsterH":
+                this.Enemies.push(new Enemy(this, position, this.levelContentManager.imgMonsterH));
+                break;
         }
 
         return new Tile(null, Enum.TileCollision.Passable, x, y);
@@ -423,6 +451,7 @@
         this.levelStage.addChild(fpsLabel);
         fpsLabel.x = this.gameWidth - 50;
         fpsLabel.y = 20;
+        this.levelStage.setTransform(0);
     };
 
     /// <summary>
