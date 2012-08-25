@@ -28,7 +28,7 @@
 
     var StaticTile = new Tile(null, Enum.TileCollision.Passable, 0, 0);
 
-    var levelWidth = 320;
+    var levelWidth = 150;
     var levelHeight = 20;
 
     function Level(stage, contentManager, textLevel, gameWidth, gameHeight) {
@@ -429,6 +429,7 @@
     /// Updates all objects in the world, performs collision between them,
     /// and handles the time limit with scoring.
     /// </summary>
+    var show = false;
     Level.prototype.Update = function () {
         var ElapsedGameTime = (Ticker.getTime() - this.InitialGameTime) / 1000;
 
@@ -473,6 +474,7 @@
         //fpsLabel.text = Math.round(Ticker.getMeasuredFPS()) + " fps";
         //console.log(this.Hero.x);
         fpsLabel.text = this.Hero.x + " fps";
+
 
 
         if (this.Hero.x > 480) {

@@ -51,7 +51,7 @@
             images: [imgMonster], //image to use
             frames: { width: 100, height: 110, regX: 50, regY: 110 },
             animations: {
-                walk: [0, 0, "walk", 4],
+                walk: [0, 3, "walk", 4],
                 idle: [0, 0, "idle", 4]
             }
         });
