@@ -100,7 +100,7 @@ function ContentManager(stage, width, height) {
             SetAudioDownloadParameters(this.playerKilled, "sounds/PlayerKilled" + audioExtension);
             SetAudioDownloadParameters(this.playerJump, "sounds/Jump" + audioExtension);
             SetAudioDownloadParameters(this.playerFall, "sounds/PlayerFall" + audioExtension);
-            SetAudioDownloadParameters(this.playerFire, "sounds/PlayerFire" + audioExtension);
+            SetAudioDownloadParameters(this.playerFire, "sounds/PlayerFireNo" + audioExtension);
             SetAudioDownloadParameters(this.playerFireNo, "sounds/PlayerFireNo" + audioExtension);
             SetAudioDownloadParameters(this.exitReached, "sounds/ExitReached" + audioExtension);
                 // Used to simulate multi-channels audio 
