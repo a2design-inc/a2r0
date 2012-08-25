@@ -89,14 +89,15 @@ function ContentManager(stage, width, height) {
         if (canPlayMp3)
             audioExtension = ".mp3";
         else if (canPlayOgg) {
-            audioExtension = ".ogg";
+            audioExtension = ".mp3";
         }
 
         // If the browser supports either MP3 or OGG
         if (audioExtension !== ".none") {
             SetAudioDownloadParameters(this.globalMusic, "sounds/Music" + audioExtension);
+            SetAudioDownloadParameters(this.startLavel, "sounds/StartLavel" + audioExtension);
             SetAudioDownloadParameters(this.playerKilled, "sounds/PlayerKilled" + audioExtension);
-            SetAudioDownloadParameters(this.playerJump, "sounds/PlayerJump" + audioExtension);
+            SetAudioDownloadParameters(this.playerJump, "sounds/Jump" + audioExtension);
             SetAudioDownloadParameters(this.playerFall, "sounds/PlayerFall" + audioExtension);
             SetAudioDownloadParameters(this.playerFire, "sounds/PlayerFire" + audioExtension);
             SetAudioDownloadParameters(this.exitReached, "sounds/ExitReached" + audioExtension);
