@@ -387,9 +387,6 @@
 
     Player.prototype.ChangeSkin = function () {
 
-        console.log(this);
-        //console.log(this.level.levelContentManager.imgRobot);
-
         if (this.level.Hero.currentSkin < this.level.Hero.maxSkin) {
             this.level.Hero.currentSkin++;
 
