@@ -375,6 +375,8 @@
     // Method to call once everything has been setup in the level
     // to simply start it
     Level.prototype.StartLevel = function () {
+        this.levelContentManager.startLavel.play();
+
         // Adding all tiles to the EaselJS Stage object
         // This is the platform tile where the hero & enemies will
         // be able to walk onto
@@ -399,6 +401,7 @@
         // Adding our brillant hero
         this.levelStage.addChild(this.Hero);
         // Playing the background music
+        this.levelContentManager.globalMusic.volume = 0.2;
         this.levelContentManager.globalMusic.play();
 
         // add a text object to output the current FPS:
