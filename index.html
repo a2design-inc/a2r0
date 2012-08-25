@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<!-------------------------------------------------------------------------------
+// HTML5 Platformer game
+//
+// Inspired by the Microsoft XNA Community Game Platformer Sample
+// Copyright (C) Microsoft Corporation. All rights reserved.
+// Ported to HTML5 Canvas with EaselJS by David Rousset - http://blogs.msdn.com/davrous
+// Checkout EaselJS: an open-source JavaScript gaming framework : http://easeljs.com  
+//------------------------------------------------------------------------------->
+<html>
+<head>
+<title>HTML5 Platformer Game</title>
+<link rel="shortcut icon" href="./icons/favicon.ico"/>
+<META name="msapplication-task" content="name=XNA 4.0 Platformer Sample;action-uri=http://create.msdn.com/en-US/education/catalog/sample/platformer;icon-uri=./icons/XNA.ico"/>
+<META name="msapplication-task" content="name=Tutorial: Animating sprites in Canvas with EaselJS;action-uri=http://blogs.msdn.com/b/davrous/archive/2011/07/21/html5-gaming-animating-sprites-in-canvas-with-easeljs.aspx;icon-uri=./icons/blogicon.ico"/>
+<META name="msapplication-task" content="name=Tutorial: Building the core objects & handling collisions with EaselJS;action-uri=http://blogs.msdn.com/b/davrous/archive/2011/07/29/html5-gaming-building-the-core-objects-amp-handling-collisions-with-easeljs.aspx;icon-uri=./icons/blogicon.ico"/>
+<META name="msapplication-task" content="name=Build my pinned site;action-uri=http://buildmypinnedsite.com;icon-uri=./icons/mypinnedsites.ico"/>
+
+<!-- Import EaselJS Framework -->
+<script src="./src/easeljs/utils/UID.js"></script>
+<script src="./src/easeljs/geom/Matrix2D.js"></script>
+<script src="./src/easeljs/events/MouseEvent.js"></script>
+<script src="./src/easeljs/utils/SpriteSheetUtils.js"></script>
+<script src="./src/easeljs/display/SpriteSheet.js"></script>
+<script src="./src/easeljs/display/Shadow.js"></script>
+<script src="./src/easeljs/display/DisplayObject.js"></script>
+<script src="./src/easeljs/display/Container.js"></script>
+<script src="./src/easeljs/display/Stage.js"></script>
+<script src="./src/easeljs/display/Bitmap.js"></script>
+<script src="./src/easeljs/display/BitmapAnimation.js"></script>
+<script src="./src/easeljs/display/Text.js"></script>
+<script src="./src/easeljs/utils/Ticker.js"></script>
+<script src="./src/easeljs/geom/Rectangle.js"></script>
+<script src="./src/easeljs/geom/Point.js"></script>
+<!-- End EaselJS Imports -->
+
+<script src="./src/easeljs/XNARectangle.js"></script>
+<script src="./src/easeljs/PlatformerHelper.js"></script>
+<script src="./src/easeljs/ContentManager.js"></script>
+<script src="./src/easeljs/Tile.js"></script>
+<script src="./src/easeljs/Gem.js"></script>
+<script src="./src/easeljs/Enemy.js"></script>
+<script src="./src/easeljs/Player.js"></script>
+<script src="./src/easeljs/Level.js"></script>
+<script src="./src/easeljs/PlatformerGame.js"></script>
+
+<script>
+var canvas;
+var stage = null;
+var contentManager;
+var platformerGame;
+var globalCanvasContext;
+var enableShadows = true;
+var enableRAF = true;
+
+// Specific IE9 pinned site experience
+// Buttons displayed in the thumnbail preview in the taskbar
+var ieBtnLeft, ieBtnRight, ieBtnJump;
+
+function restart() {
+	if (stage == null) {
+		//find canvas and load images, wait for last image to load
+		canvas = document.getElementById("platformerCanvas");
+		globalCanvasContext = canvas.getContext("2d");
+
+		// create a new stage and point it at our canvas:
+		stage = new Stage(canvas);
+
+		// downloading all needed images ressources and preloading sounds & music 
+		contentManager = new ContentManager(stage, canvas.width, canvas.height);
+		contentManager.SetDownloadCompleted(startGame);
+		contentManager.StartDownload();
+	}
+	else {
+		platformerGame.ReloadCurrentLevel();
+	}
+}
+
+// Simuate keypress for touch devices & for the IE9 pinned thumbnail buttons
+function jumpKey() {
+    platformerGame.handleKeyDown({ "keyCode": 87 });
+    setTimeout("platformerGame.handleKeyUp({ \"keyCode\": 87 })", 20);
+}
+
+function leftKey() {
+	platformerGame.handleKeyDown({ "keyCode": 37 });
+}
+
+function rightKey() {
+ 	platformerGame.handleKeyDown({ "keyCode": 39 });
+}
+
+function changeShadows() {
+	enableShadows = !enableShadows;
+}
+
+function changeRAF() {
+    enableRAF = !enableRAF;
+    Ticker.useRAF = enableRAF;
+}
+
+// Callback function once everything has been downloaded
+function startGame() {
+    platformerGame = new PlatformerGame(stage, contentManager, canvas.width, canvas.height);
+	platformerGame.StartGame();
+}
+
+//********************************************************
+// Specific code for IE9+ for the pinned mode experience
+function setIE9PinnedModeExperience() {
+    try {
+        document.addEventListener('msthumbnailclick', processSelection, false);
+
+        ieBtnLeft = window.external.msSiteModeAddThumbBarButton('icons/ie9left.ico', 'Left');
+        ieBtnJump = window.external.msSiteModeAddThumbBarButton('icons/ie9jump.ico', 'Jump');
+        ieBtnRight = window.external.msSiteModeAddThumbBarButton('icons/ie9right.ico', 'Right');
+
+        window.external.msSiteModeShowThumbBar();
+    }
+    catch(e) { }
+}
+
+function processSelection(btn) {
+    switch (btn.buttonID) {
+        case ieBtnLeft:
+            leftKey();
+            break;
+
+        case ieBtnRight:
+            rightKey();
+            break;
+
+        case ieBtnJump:
+            jumpKey();
+            break;
+    }
+}
+//********************************************************
+</script>
+</head>
+	
+<body onload="setIE9PinnedModeExperience();">
+	<div class="canvasHolder">
+		<canvas id="platformerCanvas" width="800" height="480" style="background-color:black">
+			Your browser doesn't support canvas. Please download IE9+ on <a href="http://ie.microsoft.com/testdrive">IE Test Drive</a> 
+		</canvas>
+	</div>
+	<button id="Start" onclick=restart();>(Re)Start</button><button id="Left" onclick=leftKey();>&lt;--</button>
+	<button id="Jump" onclick=jumpKey();>jump (W)</button><button id="Right" onclick=rightKey();>--&gt;</button>
+	<input id="handleShadows" type="checkbox" checked="checked" onclick="changeShadows();">Shadows (must restart)</input>
+    <input id="useRAF" type="checkbox" checked="checked" onclick="changeRAF();">requestAnimationFrame</input>
+</body>
+</html>
