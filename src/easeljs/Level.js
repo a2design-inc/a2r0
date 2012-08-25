@@ -16,7 +16,7 @@
     var fpsLabel;
 
     // Used to build the background with 3 different layers
-    var backgroundSeqTile1, backgroundSeqTile2, backgroundSeqTile3;
+    var backgroundSeqTile1, backgroundSeqTile2, backgroundSeqTile3, hill;
 
     var PointsPerSecond = 5;
 
@@ -28,13 +28,14 @@
 
     var StaticTile = new Tile(null, Enum.TileCollision.Passable, 0, 0);
 
-    function Level(stage, contentManager, textLevel, gameWidth, gameHeight) {
+    function Level(stage, contentManager, textLevel, gameWidth, gameHeight, levelIndex) {
         this.levelContentManager = contentManager;
         this.levelStage = stage;
         this.gameWidth = gameWidth;
         this.gameHeight = gameHeight;
         // Entities in the level.
         this.Hero = null;
+        this.levelIndex = levelIndex;
         this.Gems = [];
         this.Enemies = [];
         // Key locations in the level.  
@@ -366,11 +367,14 @@
         this.levelStage.addChild(backgroundSeqTile1);
         this.levelStage.addChild(backgroundSeqTile2);
         this.levelStage.addChild(backgroundSeqTile3);
+
     };
 
     // Method to call once everything has been setup in the level
     // to simply start it
     Level.prototype.StartLevel = function () {
+
+
         // Adding all tiles to the EaselJS Stage object
         // This is the platform tile where the hero & enemies will
         // be able to walk onto
@@ -395,6 +399,10 @@
         // Adding our brillant hero
         this.levelStage.addChild(this.Hero);
         // Playing the background music
+
+        this.levelContentManager.startLavel.play();
+
+        this.levelContentManager.globalMusic.volume = 0.2;
         this.levelContentManager.globalMusic.play();
 
         // add a text object to output the current FPS:
@@ -410,6 +418,7 @@
     /// </summary>
     Level.prototype.Update = function () {
         var ElapsedGameTime = (Ticker.getTime() - this.InitialGameTime) / 1000;
+
 
         this.Hero.tick();
 

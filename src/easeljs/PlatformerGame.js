@@ -249,7 +249,7 @@
         if (this.level != null)
             this.level.Dispose();
 
-        this.level = new Level(this.platformerGameStage, this.platformerGameContentManager, textLevel, this.gameWidth, this.gameHeight);
+        this.level = new Level(this.platformerGameStage, this.platformerGameContentManager, textLevel, this.gameWidth, this.gameHeight, this.levelIndex);
         this.level.StartLevel();
     };
 
