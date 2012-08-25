@@ -53,7 +53,7 @@ Enum.TileCollision = { Passable: 0, Impassable: 1, Platform: 2 };
         this.y = y * this.Height;
     };
 
-    Tile.prototype.Width = 40;
+    Tile.prototype.Width = 32;
     Tile.prototype.Height = 32;
 
     window.Tile = Tile;

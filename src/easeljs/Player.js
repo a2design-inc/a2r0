@@ -75,8 +75,13 @@
         SpriteSheetUtils.addFlippedFrames(localSpriteSheet, true, false, false);
 
         this.BitmapAnimation_initialize(localSpriteSheet);
+
         this.level = level;
         this.position = position;
+
+        this.currentSkin = 0;
+        this.maxSkin = this.level.levelContentManager.imgRobot.length-1;
+
         this.velocity = new Point(0, 0);
         this.previousBottom = 0.0;
 
@@ -90,9 +95,9 @@
         frameHeight = this.spriteSheet.getFrame(0).rect.height;
 
         // Calculate bounds within texture size. 
-        width = parseInt(frameWidth * 0.4);
+        width = parseInt(64);
         left = parseInt((frameWidth - width) / 2);
-        height = parseInt(frameWidth * 0.8);
+        height = parseInt(128);
         top = parseInt(frameHeight - height);
         this.localBounds = new XNARectangle(left, top, width, height);
 
@@ -379,6 +384,31 @@
             this.gotoAndPlay("celebrate");
         }
     };
+
+    Player.prototype.ChangeSkin = function () {
+
+        console.log(this);
+        //console.log(this.level.levelContentManager.imgRobot);
+
+        if (this.level.Hero.currentSkin < this.level.Hero.maxSkin) {
+            this.level.Hero.currentSkin++;
+
+            var localSpriteSheet = new SpriteSheet({
+                images: [this.level.levelContentManager.imgRobot[this.level.Hero.currentSkin]],
+                frames: { width: 128, height: 128, regX: 64, regY: 128 },
+                animations: {
+                    walk: [0, 9, "walk", 4],
+                    die: [10, 21, false, 4],
+                    jump: [22, 32],
+                    celebrate: [33, 43, false, 4],
+                    idle: [44, 44]
+                }
+            });
+
+            SpriteSheetUtils.addFlippedFrames(localSpriteSheet, true, false, false);
+            this.BitmapAnimation_initialize(localSpriteSheet);
+        }
+    }
 
     window.Player = Player;
 } (window));

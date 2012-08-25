@@ -249,7 +249,7 @@
         if (this.level != null)
             this.level.Dispose();
 
-        this.level = new Level(this.platformerGameStage, this.platformerGameContentManager, textLevel, this.gameWidth, this.gameHeight, this.levelIndex);
+        this.level = new Level(this.platformerGameStage, this.platformerGameContentManager, textLevel, this.gameWidth, this.gameHeight);
         this.level.StartLevel();
     };
 
@@ -274,6 +274,10 @@
             case KEYCODE_W:
                 this.level.Hero.isJumping = true;
                 this.continuePressed = true;
+                break;
+            case KEYCODE_B:
+                //console.log(this);
+                this.level.Hero.ChangeSkin();
         }
     };
 
