@@ -461,6 +461,7 @@
         //console.log(this.Hero.x);
         fpsLabel.text = this.Hero.x + " fps";
 
+
         if (this.Hero.x > 480) {
             this.levelStage.setTransform(-this.Hero.x+480);
         }
