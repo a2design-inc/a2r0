@@ -42,7 +42,6 @@
         this.Enemies = [];
         // Key locations in the level.  
         this.Start = null;
-        this.Checkpoints = new Array();
         this.Exit = new Point(-1, -1);
         this.Score = 0;
         this.ReachedExit = false;
@@ -175,19 +174,12 @@
 
             // Player 1 start point                                                                                      
             case '1':
-                this.LoadCheckpoint(x, y);
                 return this.LoadStartTile(x, y);
                 break;
 
             // Impassable block                                                                                      
             case '#':
                 return this.LoadVarietyTile("BlockA", 7, Enum.TileCollision.Impassable, x, y);
-                break;
-
-            // Checkpoint
-            case '>':
-                this.LoadCheckpoint(x, y);
-                return new Tile(null, Enum.TileCollision.Passable, x, y);
                 break;
 
         }
@@ -273,14 +265,9 @@
         }
 
         this.Start = this.GetBounds(x, y).GetBottomCenter();
-        this.Hero = new Player(this.levelContentManager.imgRobot[0], this, this.Start);
+        this.Hero = new Player(this.levelContentManager.imgPlayer, this, this.Start);
 
         return new Tile(null, Enum.TileCollision.Passable, x, y);
-    };
-
-    Level.prototype.LoadCheckpoint = function (x, y) {
-        this.Checkpoints.push(x);
-        console.log(this.Checkpoints);
     };
 
     /// <summary>
@@ -477,13 +464,6 @@
 
         if (this.Hero.x > 480) {
             this.levelStage.setTransform(-this.Hero.x+480);
-        }
-
-        console.log(this.Hero.currentCheckpoint);
-        if (this.Hero.x >= this.Checkpoints[this.Hero.nextCheckpoint]*32) {
-            this.Hero.currentCheckpoint++;
-            this.Hero.nextCheckpoint++;
-            this.Hero.ChangeSkin();
         }
 
         // update the stage:

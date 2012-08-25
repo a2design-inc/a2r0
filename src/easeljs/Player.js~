@@ -62,7 +62,7 @@
 
         var localSpriteSheet = new SpriteSheet({
             images: [imgPlayer], //image to use
-            frames: { width: 100, height: 110, regX: 50, regY: 110 },
+            frames: { width: 64, height: 64, regX: 32, regY: 64 },
             animations: {
 //                walk: [0, 9, "walk", 4],
 //                die: [10, 21, false, 4],
