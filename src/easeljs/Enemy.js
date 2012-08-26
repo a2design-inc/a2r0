@@ -78,7 +78,7 @@
         // Calculate bounds within texture size.
         width = parseInt(64);
         left = parseInt((frameWidth - width) / 2);
-        height = parseInt(96);
+        height = parseInt(64);
         top = parseInt(frameHeight - height);
         localBounds = new XNARectangle(left, top, width, height);
 
