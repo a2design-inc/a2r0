@@ -613,10 +613,10 @@
             internalExit = false;
             for (var j = 0; j < this.Enemies.length; j++) {
                 if (this.Hero.IsAlive && this.Enemies[j].BoundingRectangle().Intersects(this.bulletStream[i].BoundingRectangle())) {
-                    console.log("KA BOOM");
                     this.levelStage.removeChild(this.bulletStream[i]);
                     this.bulletStream.splice(i, 1);
-                    this.levelStage.removeChild(this.Enemies[j]);
+                    this.Enemies[j].gotoAndPlay("die_h");
+                    //this.levelStage.removeChild(this.Enemies[j]);
                     this.Enemies.splice(j, 1);
                     i--;
                     internalExit = true;
