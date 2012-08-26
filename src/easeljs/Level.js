@@ -16,7 +16,7 @@
     var fpsLabel;
 
     // Used to build the background with 3 different layers
-    var backgroundSeqTile1, backgroundSeqTile2, backgroundSeqTile3;
+    var backgroundSeq;
 
     var PointsPerSecond = 5;
 
@@ -453,16 +453,17 @@
     // the 3 different layers available
     Level.prototype.CreateAndAddRandomBackground = function () {
         // random number between 0 & 2.
-        var randomnumber = 0;//Math.floor(Math.random() * 3);
 
-//        backgroundSeqTile1 = new Bitmap(this.levelContentManager.imgBackgroundLayers[0][randomnumber]);
-//        backgroundSeqTile2 = new Bitmap(this.levelContentManager.imgBackgroundLayers[1][randomnumber]);
-//        backgroundSeqTile3 = new Bitmap(this.levelContentManager.imgBackgroundLayers[2][randomnumber]);
 
-//        this.levelStage.addChild(backgroundSeqTile1);
-//        this.levelStage.addChild(backgroundSeqTile2);
-//        this.levelStage.addChild(backgroundSeqTile3);
-//        console.log(this);
+        if (platformerGame.levelIndex < 3 ) {
+            this.backgroundSeq = new Bitmap(this.levelContentManager.imgBackgroundLayers[platformerGame.levelIndex]);
+        } else {
+            this.backgroundSeq = new Bitmap(this.levelContentManager.imgBackgroundLayers[2]);
+        }
+
+        this.levelStage.addChild(this.backgroundSeq);
+
+
     };
 
     // Method to call once everything has been setup in the level
@@ -560,7 +561,10 @@
 
         if (this.Hero.x > 480) {
             this.levelStage.setTransform(this.levelStage.x - transform);
+            this.backgroundSeq.x =transform;
         }
+
+
 
         //console.log(this.Hero.currentCheckpoint);
         if (this.Hero.x >= this.Checkpoints[this.Hero.nextCheckpoint]*32) {

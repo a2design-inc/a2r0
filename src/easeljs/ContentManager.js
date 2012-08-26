@@ -66,6 +66,8 @@ function ContentManager(stage, width, height) {
         new Image()
     );
     this.imgBullet = new Array(
+        new Image(),
+        new Image(),
         new Image()
     );
     this.imgGem = new Image();
@@ -123,11 +125,9 @@ function ContentManager(stage, width, height) {
 
         // download the 3 layers * 3 versions
         for (var i = 0; i < 3; i++) {
-            this.imgBackgroundLayers[i] = new Array();
-            for (var j = 0; j < 3; j++) {
-                this.imgBackgroundLayers[i][j] = new Image();
-                SetDownloadParameters(this.imgBackgroundLayers[i][j], "img/Backgrounds/Layer" + i + "_" + j + ".png");
-            }
+            this.imgBackgroundLayers[i] = new Image();
+            SetDownloadParameters(this.imgBackgroundLayers[i], "img/Backgrounds/Layer" + i + ".png");
+
         }
 
         SetDownloadParameters(this.imgRobot[0], "img/Robot0.png");
@@ -137,6 +137,8 @@ function ContentManager(stage, width, height) {
         SetDownloadParameters(this.imgRobot[4], "img/Robot4.png");
 
         SetDownloadParameters(this.imgBullet[0], "img/Bullet0.png");
+        SetDownloadParameters(this.imgBullet[1], "img/Bullet1.png");
+        SetDownloadParameters(this.imgBullet[2], "img/Bullet2.png");
 
         SetDownloadParameters(this.imgMonsterA, "img/MonsterA.png");
         SetDownloadParameters(this.imgMonsterB, "img/MonsterB.png");
