@@ -26,7 +26,7 @@
     // Index used for the naming of the monsters
     var monsterIndex = 0;
 
-    var globalTargetFPS = 27;
+    var globalTargetFPS = 17;
 
     var StaticTile = new Tile(null, Enum.TileCollision.Passable, 0, 0);
 
@@ -52,7 +52,9 @@
             frames: { width: 100, height: 110, regX: 50, regY: 110 },
             animations: {
                 walk: [0, 3, "walk", 4],
-                idle: [0, 0, "idle", 4]
+                idle: [4, 7, "idle", 4],
+                die: [8, 11, false, 4]
+
             }
         });
 
