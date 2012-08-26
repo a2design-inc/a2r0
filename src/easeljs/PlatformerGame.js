@@ -266,15 +266,15 @@
         //cross browser issues exist
         if (!e) { var e = window.event; }
         switch (e.keyCode) {
-            case KEYCODE_LEFT:
+            case KEYCODE_A:
                 this.level.Hero.direction = -1;
                 this.level.Hero.lastdirection = -1;
                 break;
-            case KEYCODE_RIGHT:
+            case KEYCODE_D:
                 this.level.Hero.direction = 1;
                 this.level.Hero.lastdirection = 1;
                 break;
-            case KEYCODE_UP:
+            case KEYCODE_W:
                 this.level.Hero.isJumping = true;
                 this.continuePressed = true;
                 break;
@@ -291,15 +291,15 @@
         //cross browser issues exist
         if (!e) { var e = window.event; }
         switch (e.keyCode) {
-            case KEYCODE_LEFT: ;
+            case KEYCODE_A: ;
                 this.level.Hero.lastdirection = -1;
                 this.level.Hero.direction = 0;
                 break;
-            case KEYCODE_RIGHT:
+            case KEYCODE_D:
                 this.level.Hero.lastdirection = 1;
                 this.level.Hero.direction = 0;
                 break;
-            case KEYCODE_UP:
+            case KEYCODE_W:
                 this.continuePressed = false;
                 break;
         }
