@@ -205,6 +205,34 @@
                 break;
 
 
+            // Impassable block
+            case '/':
+                return this.LoadNamedTile("BlockLT", Enum.TileCollision.Impassable, x, y);
+                break;
+
+            case '|':
+                return this.LoadNamedTile("BlockCT", Enum.TileCollision.Impassable, x, y);
+                break;
+
+            case "p":
+                return this.LoadNamedTile("BlockRT", Enum.TileCollision.Impassable, x, y);
+                break;
+
+
+            // Impassable block
+            case 'u':
+                return this.LoadNamedTile("BlockLF", Enum.TileCollision.Impassable, x, y);
+                break;
+
+            case 'i':
+                return this.LoadNamedTile("BlockCF", Enum.TileCollision.Impassable, x, y);
+                break;
+
+            case "o":
+                return this.LoadNamedTile("BlockRF", Enum.TileCollision.Impassable, x, y);
+                break;
+
+
             // Checkpoint
             case '>':
                 this.LoadCheckpoint(x, y);
@@ -263,6 +291,29 @@
                 break;
             case "BlockB3":
                 return new Tile(this.levelContentManager.imgBlockB3, collision, x, y);
+                break;
+
+
+
+            case "BlockLT":
+                return new Tile(this.levelContentManager.imgBlockLT, collision, x, y);
+                break;
+            case "BlockCT":
+                return new Tile(this.levelContentManager.imgBlockCT, collision, x, y);
+                break;
+            case "BlockRT":
+                return new Tile(this.levelContentManager.imgBlockRT, collision, x, y);
+                break;
+
+
+            case "BlockLF":
+                return new Tile(this.levelContentManager.imgBlockLF, collision, x, y);
+                break;
+            case "BlockCF":
+                return new Tile(this.levelContentManager.imgBlockCF, collision, x, y);
+                break;
+            case "BlockRF":
+                return new Tile(this.levelContentManager.imgBlockRF, collision, x, y);
                 break;
         }
     };
@@ -560,7 +611,7 @@
 
         if (this.Hero.x > 480) {
             this.levelStage.setTransform(this.levelStage.x - transform);
-            this.backgroundSeq.x =transform;
+            this.backgroundSeq.x = transform;
         }
 
 
