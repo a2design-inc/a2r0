@@ -611,7 +611,7 @@
 
         if (this.Hero.x > 480) {
             this.levelStage.setTransform(this.levelStage.x - transform);
-            this.backgroundSeq.x = transform;
+            this.backgroundSeq.x = transform/1.5;
         }
 
 
