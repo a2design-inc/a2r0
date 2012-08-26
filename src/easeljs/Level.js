@@ -559,6 +559,7 @@
             this.levelStage.setTransform(-this.Hero.x+480);
         }
 
+        //console.log(this.Hero.currentCheckpoint);
         if (this.Hero.x >= this.Checkpoints[this.Hero.nextCheckpoint]*32) {
             this.Hero.currentCheckpoint++;
             this.Hero.nextCheckpoint++;
@@ -619,7 +620,7 @@
                 if(internalExit) break;
             }
             if(internalExit) break;
-            this.bulletStream[i].tick();
+            this.bulletStream[i].tick(i);
         }
     };
 
@@ -650,7 +651,7 @@
     Level.prototype.createBullet = function(position, direction, texture) {
         var len = this.bulletStream.length;
 
-        if (len <= 2)   {
+        if (len < 2)   {
             var bullet = new Bullet(this, position , direction, texture);
             this.bulletStream.push(bullet);
             //console.log(this.bulletStream);

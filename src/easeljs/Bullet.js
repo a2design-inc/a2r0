@@ -8,8 +8,6 @@
     // Local bounds used to calculate collision between bullets and the enemies
     var localBounds;
 
-    var iterations = 0;
-
     function Bullet(level, position, direction, texture) {
         this.initialize(level, position, direction, texture);
     }
@@ -31,7 +29,7 @@
 
         this.level = level;
         this.x = position.x;
-        this.y = position.y;
+        this.y = position.y-48;
 
         var localSpriteSheet = new SpriteSheet({
             images: [texture], //image to use
@@ -55,8 +53,15 @@
         top = parseInt(frameHeight - height);
         localBounds = new XNARectangle(left, top, width, height);
 
-        this.gotoAndPlay("shoot"); //animate
-        this.currentFrame = 0;
+        switch(direction) {
+            case 1:
+                this.gotoAndPlay("shoot"); //animate
+                break;
+            case -1:
+                this.gotoAndPlay("shoot_h"); //animate
+                break;
+        }
+        //this.currentFrame = 0;
         this.direction = direction;
         //this.level.levelStage.addChild();
 
@@ -73,24 +78,49 @@
         return new XNARectangle(left, top, localBounds.width, localBounds.height);
     };
 
-    Bullet.prototype.tick = function () {
+    Bullet.prototype.tick = function (i) {
         // handle bullet movement and looping
-//        for (var i = 0 ; i < this.level.bulletStream.length; i++) {
-//            var o = this.level.bulletStream[i];
-//            if(!o) { continue; }
-//            if(this.outOfScreen(o)) {
-//                this.level.bulletStream.splice(i, 1);
-//                this.level.levelStage.removeChild(o);
-//            }
-//            o.x += this.direction * bulletSpeed;
-//        }
-//        iterations++;
-        this.x += this.direction * bulletSpeed;
+
+        if (this.outOfScreen(i)) {
+            this.Destroy(i);
+        } else {
+            this.x += this.direction * bulletSpeed;
+            this.HandleCollisions(i);
+        }
     }
 
-    Bullet.prototype.outOfScreen = function(o) {
+    Bullet.prototype.outOfScreen = function(i) {
+        var comp;
+        if (this.level.Hero.x < 480) {
+            comp = 480;
+        } else {
+            comp = this.level.Hero.x;
+        }
+
+        if (Math.abs(this.x-comp) > 480+32) {
+            return true;
+        }
         return false;
-        //return o.x > this.level.levelStage.x + 960;
+    }
+
+    Bullet.prototype.HandleCollisions = function (i) {
+        var bounds = this.BoundingRectangle();
+        if (this.direction == 1) {
+            var neighborTile = Math.ceil((bounds.Right() / 32)) - 1;
+        } else {
+            var neighborTile = Math.floor(bounds.Left() / 32);
+        }
+        //console.log(neighborTile);
+        var collision = this.level.GetCollision(neighborTile, Math.floor(this.y/32));
+
+        if (collision) {
+            this.Destroy(i);
+        }
+
+        Bullet.prototype.Destroy = function (i) {
+            this.level.bulletStream.splice(i,1);
+            this.level.levelStage.removeChild(this);
+        }
     }
 
     window.Bullet = Bullet;
