@@ -18,6 +18,7 @@
     // Used to build the background with 3 different layers
     var backgroundSeq;
     var backgroundSeq1;
+    var backgroundSeq2;
 
     var PointsPerSecond = 5;
 
@@ -528,9 +529,15 @@
         } else {
             this.backgroundSeq1 = new Bitmap(this.levelContentManager.imgBackgroundLayers[2]);
         }
+        if (platformerGame.levelIndex < 3 ) {
+            this.backgroundSeq2 = new Bitmap(this.levelContentManager.imgBackgroundLayers[platformerGame.levelIndex]);
+        } else {
+            this.backgroundSeq2 = new Bitmap(this.levelContentManager.imgBackgroundLayers[2]);
+        }
 
         this.levelStage.addChild(this.backgroundSeq);
         this.levelStage.addChild(this.backgroundSeq1);
+        this.levelStage.addChild(this.backgroundSeq2);
 
     };
 
@@ -630,6 +637,7 @@
             this.levelStage.setTransform(this.levelStage.x - transform);
             this.backgroundSeq.x = transform/1.5;
             this.backgroundSeq1.x = transform/1.5 + 2400;
+            this.backgroundSeq2.x = transform/1.5 + 2*2400;
         }
 
 
