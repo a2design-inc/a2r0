@@ -85,7 +85,7 @@
         this.position = position;
 
         this.currentCheckpoint = 0;
-        this.nextCheckpoint = 1;
+        this.nextCheckpoint = 0;
         this.maxSkin = this.level.levelContentManager.imgRobot.length;
 
         this.velocity = new Point(0, 0);
