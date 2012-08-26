@@ -175,13 +175,13 @@
 
             // Player 1 start point                                                                                      
             case '1':
-                this.LoadCheckpoint(x, y);
+//                this.LoadCheckpoint(x, y);
                 return this.LoadStartTile(x, y);
                 break;
 
             // Impassable block                                                                                      
             case '#':
-                return this.LoadVarietyTile("BlockA", 7, Enum.TileCollision.Impassable, x, y);
+                return this.LoadVarietyTile("BlockA", 1, Enum.TileCollision.Impassable, x, y);
                 break;
 
             // Checkpoint
@@ -280,6 +280,7 @@
 
     Level.prototype.LoadCheckpoint = function (x, y) {
         this.Checkpoints.push(x);
+//        console.log(this.Checkpoints);
     };
 
     /// <summary>
@@ -480,7 +481,7 @@
             this.levelStage.setTransform(-this.Hero.x+480);
         }
 
-        //console.log(this.Hero.currentCheckpoint);
+        console.log(this.Hero.currentCheckpoint);
         if (this.Hero.x >= this.Checkpoints[this.Hero.nextCheckpoint]*32) {
             this.Hero.currentCheckpoint++;
             this.Hero.nextCheckpoint++;
