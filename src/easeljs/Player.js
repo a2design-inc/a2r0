@@ -416,7 +416,7 @@
 
             var localSpriteSheet = new SpriteSheet({
                 images: [this.level.levelContentManager.imgRobot[this.currentCheckpoint]],
-                frames: { width: 100, height: 100, regX: 50, regY: 110 },
+                frames: { width: 100, height: 110, regX: 50, regY: 110 },
                 animations: {
                     walk: [0, 3, "walk", 4],
                     die: [4, 7, false, 4],
