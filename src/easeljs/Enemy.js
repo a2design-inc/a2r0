@@ -74,9 +74,9 @@
         frameHeight = this.spriteSheet.getFrame(0).rect.height;
 
         // Calculate bounds within texture size.
-        width = parseInt(frameWidth * 0.35);
+        width = parseInt(64);
         left = parseInt((frameWidth - width) / 2);
-        height = parseInt(frameWidth * 0.7);
+        height = parseInt(96);
         top = parseInt(frameHeight - height);
         localBounds = new XNARectangle(left, top, width, height);
 
