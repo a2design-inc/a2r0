@@ -3,7 +3,6 @@
     /// <summary>
     /// The speed at which this enemy moves along the X axis.
     /// </summary>
-    var bulletSpeed = 16;
 
     // Local bounds used to calculate collision between bullets and the enemies
     var localBounds;
@@ -27,30 +26,33 @@
         var frameWidth;
         var frameHeight;
         var texture;
+        var bulletSpeed;
 
         this.level = level;
         this.x = position.x + direction * 32;
         this.y = position.y-42;
 
-        texture = this.level.levelContentManager.imgBullet[platformerGame.levelIndex];
+
         height = 16;
 
-        switch (platformerGame.levelIndex) {
-            case 0:
+        switch (this.level.Hero.currentCheckpoint) {
+            case 3:
                 width = 16;
+                bulletSpeed = 8;
+                texture = this.level.levelContentManager.imgBullet[0];
                 break;
-            case 1:
+            case 4:
+            case 5:
                 width = 32;
-                break;
-            case 2:
-                width = 32;
+                bulletSpeed = 16;
+                texture = this.level.levelContentManager.imgBullet[1];
                 break;
         }
         var localSpriteSheet = new SpriteSheet({
             images: [texture], //image to use
             frames: { width: width, height: height, regX: width/2, regY: height },
             animations: {
-                shoot: [0, 3, "shoot", 4]
+                shoot: [0, 3, "shoot", 1]
             }
         });
 
@@ -99,7 +101,7 @@
         if (this.outOfScreen(i)) {
             this.Destroy(i);
         } else {
-            this.x += this.direction * bulletSpeed;
+            this.x += this.direction * this.bulletSpeed;
             this.HandleCollisions(i);
         }
     }
