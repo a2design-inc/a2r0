@@ -173,8 +173,10 @@
     PlatformerGame.prototype.SetOverlayCanvas = function () {
         var oneOfThisOverlay = this.platformerGameContentManager.winOverlay;
 
-        statusCanvas = document.createElement("canvas");
-        document.body.appendChild(statusCanvas);
+//        statusCanvas = document.createElement("canvas");
+        statusCanvas = document.getElementById("statusCanvas");
+
+       // document.body.appendChild(statusCanvas);
         statusCanvasCtx = statusCanvas.getContext("2d");
 
         statusCanvas.setAttribute('width', oneOfThisOverlay.width);
