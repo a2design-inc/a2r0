@@ -275,7 +275,7 @@
                 this.jumpTime += this.elapsed;
                 // Playing the proper animation based on
                 // the current direction of our hero
-                if (this.direction == 1) {
+                if (this.lastdirection == 1) {
                     this.gotoAndPlay("jump_h");
                 }
                 else {
