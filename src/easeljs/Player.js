@@ -176,7 +176,11 @@
             }
             else {
                 if (this.currentAnimation.indexOf("idle") === -1 && this.direction === 0) {
-                    this.gotoAndPlay("idle");
+                    if (this.lastdirection === 1) {
+                        this.gotoAndPlay("idle_h");
+                    } else {
+                        this.gotoAndPlay("idle");
+                    }
                 }
             }
         }
@@ -422,7 +426,7 @@
     Player.prototype.fireBullet = function() {
         // create the bullet
         var position = {x: this.x, y: this.y};
-        this.level.createBullet(position, this.lastdirection, this.level.levelContentManager.imgBullet[0]);
+        this.level.createBullet(position, this.lastdirection);
     }
 
     window.Player = Player;
