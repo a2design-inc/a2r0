@@ -44,6 +44,19 @@
         // Key locations in the level.  
         this.Start = null;
         this.Checkpoints = new Array();
+        switch (platformerGame.levelIndex) {
+            case 1:
+                this.Checkpoints[0] = undefined;
+                this.Checkpoints[1] = undefined;
+                this.Checkpoints[2] = undefined;
+                break;
+            case 2:
+                this.Checkpoints[0] = undefined;
+                this.Checkpoints[1] = undefined;
+                this.Checkpoints[2] = undefined;
+                this.Checkpoints[3] = undefined;
+                break;
+        }
         this.Exit = new Point(-1, -1);
         this.Score = 0;
         this.ReachedExit = false;
@@ -388,7 +401,6 @@
 
     Level.prototype.LoadCheckpoint = function (x, y) {
         this.Checkpoints.push(x);
-//        console.log(this.Checkpoints);
     };
 
 
