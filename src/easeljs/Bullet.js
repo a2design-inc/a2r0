@@ -29,8 +29,8 @@
         var texture;
 
         this.level = level;
-        this.x = position.x;
-        this.y = position.y-48;
+        this.x = position.x + direction * 32;
+        this.y = position.y-42;
 
         texture = this.level.levelContentManager.imgBullet[platformerGame.levelIndex];
         height = 16;
