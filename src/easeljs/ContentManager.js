@@ -125,11 +125,9 @@ function ContentManager(stage, width, height) {
 
         // download the 3 layers * 3 versions
         for (var i = 0; i < 3; i++) {
-            this.imgBackgroundLayers[i] = new Array();
-            for (var j = 0; j < 3; j++) {
-                this.imgBackgroundLayers[i][j] = new Image();
-                SetDownloadParameters(this.imgBackgroundLayers[i][j], "img/Backgrounds/Layer" + i + "_" + j + ".png");
-            }
+            this.imgBackgroundLayers[i] = new Image();
+            SetDownloadParameters(this.imgBackgroundLayers[i], "img/Backgrounds/Layer" + i + ".png");
+
         }
 
         SetDownloadParameters(this.imgRobot[0], "img/Robot0.png");
