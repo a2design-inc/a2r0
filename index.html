@@ -9,27 +9,31 @@
 //------------------------------------------------------------------------------->
 <html>
 <head>
-    <title>aRobot</title>
-    <link rel="shortcut icon" href="./icons/favicon.ico"/>
+<title>HTML5 Platformer Game</title>
+<link rel="shortcut icon" href="./icons/favicon.ico"/>
+<META name="msapplication-task" content="name=XNA 4.0 Platformer Sample;action-uri=http://create.msdn.com/en-US/education/catalog/sample/platformer;icon-uri=./icons/XNA.ico"/>
+<META name="msapplication-task" content="name=Tutorial: Animating sprites in Canvas with EaselJS;action-uri=http://blogs.msdn.com/b/davrous/archive/2011/07/21/html5-gaming-animating-sprites-in-canvas-with-easeljs.aspx;icon-uri=./icons/blogicon.ico"/>
+<META name="msapplication-task" content="name=Tutorial: Building the core objects & handling collisions with EaselJS;action-uri=http://blogs.msdn.com/b/davrous/archive/2011/07/29/html5-gaming-building-the-core-objects-amp-handling-collisions-with-easeljs.aspx;icon-uri=./icons/blogicon.ico"/>
+<META name="msapplication-task" content="name=Build my pinned site;action-uri=http://buildmypinnedsite.com;icon-uri=./icons/mypinnedsites.ico"/>
 
-    <!-- Import EaselJS Framework -->
-    <script src="http://code.createjs.com/easeljs-0.4.1.min.js"></script>
-    <script src="./src/easeljs/utils/UID.js"></script>
-    <script src="./src/easeljs/geom/Matrix2D.js"></script>
-    <script src="./src/easeljs/events/MouseEvent.js"></script>
-    <script src="./src/easeljs/utils/SpriteSheetUtils.js"></script>
-    <script src="./src/easeljs/display/SpriteSheet.js"></script>
-    <script src="./src/easeljs/display/Shadow.js"></script>
-    <script src="./src/easeljs/display/DisplayObject.js"></script>
-    <script src="./src/easeljs/display/Container.js"></script>
-    <script src="./src/easeljs/display/Stage.js"></script>
-    <script src="./src/easeljs/display/Bitmap.js"></script>
-    <script src="./src/easeljs/display/BitmapAnimation.js"></script>
-    <script src="./src/easeljs/display/Text.js"></script>
-    <script src="./src/easeljs/utils/Ticker.js"></script>
-    <script src="./src/easeljs/geom/Rectangle.js"></script>
-    <script src="./src/easeljs/geom/Point.js"></script>
-    <!-- End EaselJS Imports -->
+<!-- Import EaselJS Framework -->
+
+<script src="./src/easeljs/utils/UID.js"></script>
+<script src="./src/easeljs/geom/Matrix2D.js"></script>
+<script src="./src/easeljs/events/MouseEvent.js"></script>
+<script src="./src/easeljs/utils/SpriteSheetUtils.js"></script>
+<script src="./src/easeljs/display/SpriteSheet.js"></script>
+<script src="./src/easeljs/display/Shadow.js"></script>
+<script src="./src/easeljs/display/DisplayObject.js"></script>
+<script src="./src/easeljs/display/Container.js"></script>
+<script src="./src/easeljs/display/Stage.js"></script>
+<script src="./src/easeljs/display/Bitmap.js"></script>
+<script src="./src/easeljs/display/BitmapAnimation.js"></script>
+<script src="./src/easeljs/display/Text.js"></script>
+<script src="./src/easeljs/utils/Ticker.js"></script>
+<script src="./src/easeljs/geom/Rectangle.js"></script>
+<script src="./src/easeljs/geom/Point.js"></script>
+<!-- End EaselJS Imports -->
 
     <script src="./src/easeljs/XNARectangle.js"></script>
     <script src="./src/easeljs/PlatformerHelper.js"></script>
@@ -56,8 +60,8 @@
         var ieBtnLeft, ieBtnRight, ieBtnJump;
 
         function restart() {
-            document.getElementById('menu').style.display='none';
-            document.getElementById('screen').style.display='';
+//            document.getElementById('menu').style.display='none';
+//            document.getElementById('screen').style.display='';
 
             if (stage == null) {
                 //find canvas and load images, wait for last image to load
@@ -136,14 +140,16 @@
                     break;
             }
         }
+
+
         //********************************************************
     </script>
 </head>
 
-<body onload="setIE9PinnedModeExperience();" style="background:#000426 url(img/Backgrounds/Layer0_0.png)">
+<body onload="setIE9PinnedModeExperience(); restart();" style="background:#000426 url(img/Backgrounds/Layer0_0.png)">
 <div style="margin: 0 auto; position: relative; width: 960px;">
-    <div id="menu"><a href="#" onclick="restart();"><img src="img/Backgrounds/welcome.png" alt=""></a></div>
-    <div id="screen" class="canvasHolder" style="display: none;">
+    <!--<div id="menu"><a href="#" onclick="restart();"><img src="img/Backgrounds/welcome.png" alt=""></a></div>-->
+    <div id="screen" class="canvasHolder" style="display: block;">
         <canvas id="platformerCanvas" width="960" height="640" style="background:#000426 url(img/Backgrounds/Layer0_0.png) repeat-x; ">
             Your browser doesn't support canvas.
         </canvas>
