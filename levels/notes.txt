@@ -7,3 +7,13 @@ L
 
 Globals:
 level index:  platformerGame.levelIndex
+
+rockets tiles
+
+left turbo BlockLT       /
+center turbo BlockCT     |
+right turbo BlockRT      p
+
+left fire BlockLF        u
+center fire BlockCF      i
+right fire BlockRF       o

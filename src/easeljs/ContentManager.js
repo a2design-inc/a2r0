@@ -52,6 +52,15 @@ function ContentManager(stage, width, height) {
     this.imgBlockB1 = new Image();
     this.imgBlockB2 = new Image();
     this.imgBlockB3 = new Image();
+
+    this.imgBlockLT = new Image();
+    this.imgBlockCT = new Image();
+    this.imgBlockRT = new Image();
+
+    this.imgBlockLF = new Image();
+    this.imgBlockCF = new Image();
+    this.imgBlockRF = new Image();
+
     this.imgExit1 = new Image();
     this.imgExit2 = new Image();
     this.imgExit3 = new Image();

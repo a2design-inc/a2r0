@@ -80,7 +80,25 @@
         this.position = position;
 
         this.currentCheckpoint = 0;
-        this.nextCheckpoint = 1;
+        this.nextCheckpoint = 0;
+
+        switch (platformerGame.levelIndex) {
+            case 0:
+                this.currentCheckpoint = 0;
+                this.nextCheckpoint = 0;
+                break;
+            case 1:
+                this.currentCheckpoint = 2;
+                this.nextCheckpoint = 3;
+                this.ChangeSkin();
+                break;
+            case 2:
+                this.currentCheckpoint = 4;
+                this.nextCheckpoint = 5;
+                this.ChangeSkin();
+                break;
+        }
+
         this.maxSkin = this.level.levelContentManager.imgRobot.length;
 
         this.velocity = new Point(0, 0);
@@ -393,11 +411,11 @@
 
     Player.prototype.ChangeSkin = function () {
 
-        if (this.level.Hero.currentCheckpoint < this.level.Hero.maxSkin) {
+//        if (this.currentCheckpoint <= this.maxSkin) {
             //this.level.Hero.currentCheckpoint++;
 
             var localSpriteSheet = new SpriteSheet({
-                images: [this.level.levelContentManager.imgRobot[this.level.Hero.currentCheckpoint]],
+                images: [this.level.levelContentManager.imgRobot[this.currentCheckpoint]],
                 frames: { width: 100, height: 100, regX: 50, regY: 110 },
                 animations: {
                     walk: [0, 3, "walk", 4],
@@ -410,7 +428,7 @@
 
             SpriteSheetUtils.addFlippedFrames(localSpriteSheet, true, false, false);
             this.spriteSheet = localSpriteSheet;
-        }
+//        }
     }
 
     Player.prototype.fireBullet = function() {

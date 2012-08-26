@@ -7,8 +7,8 @@
     // Local bounds used to calculate collision between bullets and the enemies
     var localBounds;
 
-    function Bullet(level, position, direction, texture) {
-        this.initialize(level, position, direction, texture);
+    function Bullet(level, position, direction) {
+        this.initialize(level, position, direction);
     }
 
     Bullet.prototype = new BitmapAnimation();
@@ -26,7 +26,7 @@
         var frameWidth;
         var frameHeight;
         var texture;
-        var bulletSpeed;
+        this.bulletSpeed;
 
         this.level = level;
         this.x = position.x + direction * 32;
@@ -38,13 +38,13 @@
         switch (this.level.Hero.currentCheckpoint) {
             case 3:
                 width = 16;
-                bulletSpeed = 8;
+                this.bulletSpeed = 8;
                 texture = this.level.levelContentManager.imgBullet[0];
                 break;
             case 4:
             case 5:
                 width = 32;
-                bulletSpeed = 16;
+                this.bulletSpeed = 16;
                 texture = this.level.levelContentManager.imgBullet[1];
                 break;
         }

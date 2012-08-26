@@ -17,6 +17,7 @@
 
     // Used to build the background with 3 different layers
     var backgroundSeq;
+    var backgroundSeq1;
 
     var PointsPerSecond = 5;
 
@@ -43,6 +44,19 @@
         // Key locations in the level.  
         this.Start = null;
         this.Checkpoints = new Array();
+        switch (platformerGame.levelIndex) {
+            case 1:
+                this.Checkpoints[0] = undefined;
+                this.Checkpoints[1] = undefined;
+                this.Checkpoints[2] = undefined;
+                break;
+            case 2:
+                this.Checkpoints[0] = undefined;
+                this.Checkpoints[1] = undefined;
+                this.Checkpoints[2] = undefined;
+                this.Checkpoints[3] = undefined;
+                break;
+        }
         this.Exit = new Point(-1, -1);
         this.Score = 0;
         this.ReachedExit = false;
@@ -205,6 +219,34 @@
                 break;
 
 
+            // Impassable block
+            case '/':
+                return this.LoadNamedTile("BlockLT", Enum.TileCollision.Impassable, x, y);
+                break;
+
+            case '|':
+                return this.LoadNamedTile("BlockCT", Enum.TileCollision.Impassable, x, y);
+                break;
+
+            case "p":
+                return this.LoadNamedTile("BlockRT", Enum.TileCollision.Impassable, x, y);
+                break;
+
+
+            // Impassable block
+            case 'u':
+                return this.LoadNamedTile("BlockLF", Enum.TileCollision.Impassable, x, y);
+                break;
+
+            case 'i':
+                return this.LoadNamedTile("BlockCF", Enum.TileCollision.Impassable, x, y);
+                break;
+
+            case "o":
+                return this.LoadNamedTile("BlockRF", Enum.TileCollision.Impassable, x, y);
+                break;
+
+
             // Checkpoint
             case '>':
                 this.LoadCheckpoint(x, y);
@@ -263,6 +305,29 @@
                 break;
             case "BlockB3":
                 return new Tile(this.levelContentManager.imgBlockB3, collision, x, y);
+                break;
+
+
+
+            case "BlockLT":
+                return new Tile(this.levelContentManager.imgBlockLT, collision, x, y);
+                break;
+            case "BlockCT":
+                return new Tile(this.levelContentManager.imgBlockCT, collision, x, y);
+                break;
+            case "BlockRT":
+                return new Tile(this.levelContentManager.imgBlockRT, collision, x, y);
+                break;
+
+
+            case "BlockLF":
+                return new Tile(this.levelContentManager.imgBlockLF, collision, x, y);
+                break;
+            case "BlockCF":
+                return new Tile(this.levelContentManager.imgBlockCF, collision, x, y);
+                break;
+            case "BlockRF":
+                return new Tile(this.levelContentManager.imgBlockRF, collision, x, y);
                 break;
         }
     };
@@ -336,7 +401,6 @@
 
     Level.prototype.LoadCheckpoint = function (x, y) {
         this.Checkpoints.push(x);
-//        console.log(this.Checkpoints);
     };
 
 
@@ -454,15 +518,19 @@
     Level.prototype.CreateAndAddRandomBackground = function () {
         // random number between 0 & 2.
 
-
         if (platformerGame.levelIndex < 3 ) {
             this.backgroundSeq = new Bitmap(this.levelContentManager.imgBackgroundLayers[platformerGame.levelIndex]);
         } else {
             this.backgroundSeq = new Bitmap(this.levelContentManager.imgBackgroundLayers[2]);
         }
+        if (platformerGame.levelIndex < 3 ) {
+            this.backgroundSeq1 = new Bitmap(this.levelContentManager.imgBackgroundLayers[platformerGame.levelIndex]);
+        } else {
+            this.backgroundSeq1 = new Bitmap(this.levelContentManager.imgBackgroundLayers[2]);
+        }
 
         this.levelStage.addChild(this.backgroundSeq);
-
+        this.levelStage.addChild(this.backgroundSeq1);
 
     };
 
@@ -556,12 +624,12 @@
         //console.log(this.Hero.x);
         fpsLabel.text = this.Hero.x + " fps";
 
-
         var transform = (this.levelStage.x - (-this.Hero.x+480))*1;
 
         if (this.Hero.x > 480) {
             this.levelStage.setTransform(this.levelStage.x - transform);
-            this.backgroundSeq.x =transform;
+            this.backgroundSeq.x = transform/1.5;
+            this.backgroundSeq1.x = transform/1.5 + 2400;
         }
 
 
@@ -656,11 +724,11 @@
         this.Hero.Reset(this.Start);
     };
 
-    Level.prototype.createBullet = function(position, direction, texture) {
+    Level.prototype.createBullet = function(position, direction) {
         var len = this.bulletStream.length;
 
         if (len < 2)   {
-            var bullet = new Bullet(this, position , direction, texture);
+            var bullet = new Bullet(this, position , direction);
             this.bulletStream.push(bullet);
             //console.log(this.bulletStream);
             this.levelStage.addChild(bullet);
