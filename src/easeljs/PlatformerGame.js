@@ -13,6 +13,7 @@
     //usefull keycodes
     var KEYCODE_SPACE = 32;
     var KEYCODE_ENTER = 13;
+    var KEYCODE_SHIFT = 16;
     var KEYCODE_UP = 38;
     var KEYCODE_LEFT = 37;
     var KEYCODE_RIGHT = 39;
@@ -265,24 +266,22 @@
         //cross browser issues exist
         if (!e) { var e = window.event; }
         switch (e.keyCode) {
-            case KEYCODE_A: ;
             case KEYCODE_LEFT:
                 this.level.Hero.direction = -1;
                 this.level.Hero.lastdirection = -1;
                 break;
-            case KEYCODE_D: ;
             case KEYCODE_RIGHT:
                 this.level.Hero.direction = 1;
                 this.level.Hero.lastdirection = 1;
                 break;
-            case KEYCODE_W:
+            case KEYCODE_SPACE:
                 this.level.Hero.isJumping = true;
                 this.continuePressed = true;
                 break;
             case KEYCODE_B:
                 this.level.Hero.ChangeSkin();
                 break;
-            case KEYCODE_ENTER:
+            case KEYCODE_SHIFT:
                 this.level.Hero.fireBullet();
                 break;
         }
@@ -292,17 +291,15 @@
         //cross browser issues exist
         if (!e) { var e = window.event; }
         switch (e.keyCode) {
-            case KEYCODE_A: ;
             case KEYCODE_LEFT: ;
                 this.level.Hero.lastdirection = -1;
                 this.level.Hero.direction = 0;
                 break;
-            case KEYCODE_D: ;
             case KEYCODE_RIGHT:
                 this.level.Hero.lastdirection = 1;
                 this.level.Hero.direction = 0;
                 break;
-            case KEYCODE_W:
+            case KEYCODE_SPACE:
                 this.continuePressed = false;
                 break;
         }
