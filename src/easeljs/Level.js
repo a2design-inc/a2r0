@@ -732,11 +732,11 @@
         this.Hero.Reset(this.Start);
     };
 
-    Level.prototype.createBullet = function(position, direction, texture) {
+    Level.prototype.createBullet = function(position, direction) {
         var len = this.bulletStream.length;
 
         if (len < 2)   {
-            var bullet = new Bullet(this, position , direction, texture);
+            var bullet = new Bullet(this, position , direction);
             this.bulletStream.push(bullet);
             //console.log(this.bulletStream);
             this.levelStage.addChild(bullet);
