@@ -64,16 +64,11 @@
             images: [imgPlayer], //image to use
             frames: { width: 100, height: 110, regX: 50, regY: 110 },
             animations: {
-//                walk: [0, 9, "walk", 4],
-//                die: [10, 21, false, 4],
-//                jump: [22, 32],
-//                celebrate: [33, 43, false, 4],
-//                idle: [44, 44]
-                walk: [0, 0, "walk", 4],
-                die: [0, 0, false, 4],
-                jump: [0, 0],
-                celebrate: [0, 0, false, 4],
-                idle: [0, 0]
+                walk: [0, 3, "walk", 4],
+                die: [4, 7, false, 4],
+                jump: [0, 3],
+                celebrate: [8, 11, false, 4],
+                idle: [0, 3, "idle", 4]
             }
         });
 
@@ -421,18 +416,13 @@
 
             var localSpriteSheet = new SpriteSheet({
                 images: [this.level.levelContentManager.imgRobot[this.currentCheckpoint]],
-                frames: { width: 100, height: 100, regX: 50, regY: 110 },
+                frames: { width: 100, height: 110, regX: 50, regY: 110 },
                 animations: {
-//                    walk: [0, 9, "walk", 4],
-//                    die: [10, 21, false, 4],
-//                    jump: [22, 32],
-//                    celebrate: [33, 43, false, 4],
-//                    idle: [44, 44]
-                    walk: [0, 0, "walk", 4],
-                    die: [0, 0, false, 4],
-                    jump: [0, 0],
-                    celebrate: [0, 0, false, 4],
-                    idle: [0, 0]
+                    walk: [0, 3, "walk", 4],
+                    die: [4, 7, false, 4],
+                    jump: [0, 3],
+                    celebrate: [8, 11, false, 4],
+                    idle: [0, 3, "idle", 4]
                 }
             });
 
