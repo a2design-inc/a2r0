@@ -339,6 +339,8 @@
 //        console.log(this.Checkpoints);
     };
 
+
+
     /// <summary>
     /// Remembers the location of the level's exit.
     /// </summary>
@@ -554,9 +556,10 @@
         fpsLabel.text = this.Hero.x + " fps";
 
 
+        var transform = (this.levelStage.x - (-this.Hero.x+480))*1;
 
         if (this.Hero.x > 480) {
-            this.levelStage.setTransform(-this.Hero.x+480);
+            this.levelStage.setTransform(this.levelStage.x - transform);
         }
 
         //console.log(this.Hero.currentCheckpoint);
@@ -574,6 +577,7 @@
     /// Animates each gem and checks to allows the player to collect them.
     /// </summary>
     Level.prototype.UpdateGems = function () {
+        this.levelStage.setTransform(0);
         for (var i = 0; i < this.Gems.length; i++) {
             this.Gems[i].tick();
             if (this.Gems[i].BoundingRectangle().Intersects(this.Hero.BoundingRectangle())) {
