@@ -1,5 +1,9 @@
-Monsters:  A B C D E F L H
+Monsters:  A B C D E F  H
 Blocks: # :
+
+
+
+L
 
 Globals:
 level index:  platformerGame.levelIndex
