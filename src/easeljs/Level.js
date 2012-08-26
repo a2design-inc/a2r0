@@ -193,6 +193,8 @@
                 return this.LoadStartTile(x, y);
                 break;
 
+
+
             // Impassable block                                                                                      
             case '#':
                 return this.LoadLevelSpecifiedStaff("BlockA", Enum.TileCollision.Impassable, x, y);
@@ -201,6 +203,7 @@
             case ':':
                 return this.LoadLevelSpecifiedStaff("BlockB", Enum.TileCollision.Impassable, x, y);
                 break;
+
 
             // Checkpoint
             case '>':
@@ -224,49 +227,42 @@
             case "Platform1":
                 return new Tile(this.levelContentManager.imgPlatform1, collision, x, y);
                 break;
-
             case "Platform2":
                 return new Tile(this.levelContentManager.imgPlatform2, collision, x, y);
                 break;
-
             case "Platform3":
                 return new Tile(this.levelContentManager.imgPlatform3, collision, x, y);
                 break;
 
-            case "Exit":
-                return new Tile(this.levelContentManager.imgExit, collision, x, y);
+            case "Exit1":
+                return new Tile(this.levelContentManager.imgExit1, collision, x, y);
+                break;
+            case "Exit2":
+                return new Tile(this.levelContentManager.imgExit2, collision, x, y);
+                break;
+            case "Exit3":
+                return new Tile(this.levelContentManager.imgExit3, collision, x, y);
                 break;
 
             case "BlockA1":
                 return new Tile(this.levelContentManager.imgBlockA1, collision, x, y);
                 break;
-
             case "BlockA2":
                 return new Tile(this.levelContentManager.imgBlockA2, collision, x, y);
                 break;
-
             case "BlockA3":
                 return new Tile(this.levelContentManager.imgBlockA3, collision, x, y);
                 break;
 
-            case "BlockA4":
-                return new Tile(this.levelContentManager.imgBlockA4, collision, x, y);
-                break;
-
-            case "BlockA5":
-                return new Tile(this.levelContentManager.imgBlockA5, collision, x, y);
-                break;
-
-            case "BlockA6":
-                return new Tile(this.levelContentManager.imgBlockA6, collision, x, y);
-                break;
-
-            case "BlockB0":
-                return new Tile(this.levelContentManager.imgBlockB0, collision, x, y);
-                break;
 
             case "BlockB1":
                 return new Tile(this.levelContentManager.imgBlockB1, collision, x, y);
+                break;
+            case "BlockB2":
+                return new Tile(this.levelContentManager.imgBlockB2, collision, x, y);
+                break;
+            case "BlockB3":
+                return new Tile(this.levelContentManager.imgBlockB3, collision, x, y);
                 break;
         }
     };
@@ -292,38 +288,35 @@
         var tileName = '';
         var levelIndex = platformerGame.levelIndex + 1;
 
-        //Platform
-        if (baseName == 'Platform') {
-
-            if (levelIndex < 3) {
-                tileName = baseName + levelIndex;
-            } else {
-                tileName = baseName + '2';
-            }
-//            tileName = baseName + '1';
-
-        }
-
-
-        //BlockA
-        if (baseName == 'BlockA') {
-            if (levelIndex < 3) {
-                tileName = baseName + levelIndex;
-            } else {
-                tileName = baseName + '3';
-            }
-        }
-
-        //BlockB
-        if (baseName == 'BlockB') {
-            if (levelIndex < 3) {
-                tileName = baseName + levelIndex;
-            } else {
-                tileName = baseName + '3';
-            }
-        }
-        //Exit
-            console.log(tileName);
+//        //Platform
+//        if (baseName == 'Platform') {
+//
+//            if (levelIndex < 3) {
+//                tileName = baseName + levelIndex;
+//            } else {
+//                tileName = baseName + '2';
+//            }
+////            tileName = baseName + '1';
+//
+//        }
+//        //BlockA
+//        if (baseName == 'BlockA') {
+//            if (levelIndex < 3) {
+//                tileName = baseName + levelIndex;
+//            } else {
+//                tileName = baseName + '3';
+//            }
+//        }
+//
+//        //BlockB
+//        if (baseName == 'BlockB') {
+//            if (levelIndex < 3) {
+//                tileName = baseName + levelIndex;
+//            } else {
+//                tileName = baseName + '3';
+//            }
+//        }
+        tileName = baseName + '1';
         return this.LoadNamedTile(tileName , collision, x, y);
     };
 
@@ -350,13 +343,22 @@
     /// Remembers the location of the level's exit.
     /// </summary>
     Level.prototype.LoadExitTile = function (x, y) {
+
+        var tileName = '';
+        var levelIndex = platformerGame.levelIndex + 1;
+
+
         if (this.Exit.x !== -1 & this.Exit.y !== y) {
             throw "A level may only have one exit.";
         }
 
         this.Exit = this.GetBounds(x, y).Center;
 
-        return this.LoadNamedTile("Exit", Enum.TileCollision.Passable, x, y);
+        tileName = "Exit" +  levelIndex;
+
+
+
+        return this.LoadNamedTile(tileName  , Enum.TileCollision.Passable, x, y);
     };
 
     /// <summary>

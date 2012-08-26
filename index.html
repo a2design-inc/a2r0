@@ -35,121 +35,125 @@
 <script src="./src/easeljs/geom/Point.js"></script>
 <!-- End EaselJS Imports -->
 
-<script src="./src/easeljs/XNARectangle.js"></script>
-<script src="./src/easeljs/PlatformerHelper.js"></script>
-<script src="./src/easeljs/ContentManager.js"></script>
-<script src="./src/easeljs/Tile.js"></script>
-<script src="./src/easeljs/Gem.js"></script>
-<script src="./src/easeljs/Bullet.js"></script>
-<script src="./src/easeljs/Enemy.js"></script>
-<script src="./src/easeljs/Player.js"></script>
-<script src="./src/easeljs/Level.js"></script>
-<script src="./src/easeljs/PlatformerGame.js"></script>
+    <script src="./src/easeljs/XNARectangle.js"></script>
+    <script src="./src/easeljs/PlatformerHelper.js"></script>
+    <script src="./src/easeljs/ContentManager.js"></script>
+    <script src="./src/easeljs/Tile.js"></script>
+    <script src="./src/easeljs/Gem.js"></script>
+    <script src="./src/easeljs/Bullet.js"></script>
+    <script src="./src/easeljs/Enemy.js"></script>
+    <script src="./src/easeljs/Player.js"></script>
+    <script src="./src/easeljs/Level.js"></script>
+    <script src="./src/easeljs/PlatformerGame.js"></script>
 
-<script>
-var canvas;
-var stage = null;
-var contentManager;
-var platformerGame;
-var globalCanvasContext;
-var enableShadows = false;
-var enableRAF = true;
+    <script>
+        var canvas;
+        var stage = null;
+        var contentManager;
+        var platformerGame;
+        var globalCanvasContext;
+        var enableShadows = false;
+        var enableRAF = true;
 
-// Specific IE9 pinned site experience
-// Buttons displayed in the thumnbail preview in the taskbar
-var ieBtnLeft, ieBtnRight, ieBtnJump;
+        // Specific IE9 pinned site experience
+        // Buttons displayed in the thumnbail preview in the taskbar
+        var ieBtnLeft, ieBtnRight, ieBtnJump;
 
-function restart() {
-	if (stage == null) {
-		//find canvas and load images, wait for last image to load
-		canvas = document.getElementById("platformerCanvas");
-		globalCanvasContext = canvas.getContext("2d");
+        function restart() {
+//            document.getElementById('menu').style.display='none';
+//            document.getElementById('screen').style.display='';
 
-		// create a new stage and point it at our canvas:
-		stage = new Stage(canvas);
+            if (stage == null) {
+                //find canvas and load images, wait for last image to load
+                canvas = document.getElementById("platformerCanvas");
+                globalCanvasContext = canvas.getContext("2d");
 
-		// downloading all needed images ressources and preloading sounds & music 
-		contentManager = new ContentManager(stage, canvas.width, canvas.height);
-		contentManager.SetDownloadCompleted(startGame);
-		contentManager.StartDownload();
-	}
-	else {
-		platformerGame.ReloadCurrentLevel();
-	}
-}
+                // create a new stage and point it at our canvas:
+                stage = new Stage(canvas);
 
-// Simuate keypress for touch devices & for the IE9 pinned thumbnail buttons
-function jumpKey() {
-    platformerGame.handleKeyDown({ "keyCode": 87 });
-    setTimeout("platformerGame.handleKeyUp({ \"keyCode\": 87 })", 20);
-}
+                // downloading all needed images ressources and preloading sounds & music
+                contentManager = new ContentManager(stage, canvas.width, canvas.height);
+                contentManager.SetDownloadCompleted(startGame);
+                contentManager.StartDownload();
+            }
+            else {
+                platformerGame.ReloadCurrentLevel();
+            }
+        }
 
-function leftKey() {
-	platformerGame.handleKeyDown({ "keyCode": 37 });
-}
+        // Simuate keypress for touch devices & for the IE9 pinned thumbnail buttons
+        function jumpKey() {
+            platformerGame.handleKeyDown({ "keyCode": 87 });
+            setTimeout("platformerGame.handleKeyUp({ \"keyCode\": 87 })", 20);
+        }
 
-function rightKey() {
- 	platformerGame.handleKeyDown({ "keyCode": 39 });
-}
+        function leftKey() {
+            platformerGame.handleKeyDown({ "keyCode": 37 });
+        }
 
-function changeShadows() {
-	enableShadows = !enableShadows;
-}
+        function rightKey() {
+            platformerGame.handleKeyDown({ "keyCode": 39 });
+        }
 
-function changeRAF() {
-    enableRAF = !enableRAF;
-    Ticker.useRAF = enableRAF;
-}
+        function changeShadows() {
+            enableShadows = !enableShadows;
+        }
 
-// Callback function once everything has been downloaded
-function startGame() {
-    platformerGame = new PlatformerGame(stage, contentManager, canvas.width, canvas.height);
-	platformerGame.StartGame();
-}
+        function changeRAF() {
+            enableRAF = !enableRAF;
+            Ticker.useRAF = enableRAF;
+        }
 
-//********************************************************
-// Specific code for IE9+ for the pinned mode experience
-function setIE9PinnedModeExperience() {
-    try {
-        document.addEventListener('msthumbnailclick', processSelection, false);
+        // Callback function once everything has been downloaded
+        function startGame() {
+            platformerGame = new PlatformerGame(stage, contentManager, canvas.width, canvas.height);
+            platformerGame.StartGame();
+        }
 
-        ieBtnLeft = window.external.msSiteModeAddThumbBarButton('icons/ie9left.ico', 'Left');
-        ieBtnJump = window.external.msSiteModeAddThumbBarButton('icons/ie9jump.ico', 'Jump');
-        ieBtnRight = window.external.msSiteModeAddThumbBarButton('icons/ie9right.ico', 'Right');
+        //********************************************************
+        // Specific code for IE9+ for the pinned mode experience
+        function setIE9PinnedModeExperience() {
+            try {
+                document.addEventListener('msthumbnailclick', processSelection, false);
 
-        window.external.msSiteModeShowThumbBar();
-    }
-    catch(e) { }
-}
+                ieBtnLeft = window.external.msSiteModeAddThumbBarButton('icons/ie9left.ico', 'Left');
+                ieBtnJump = window.external.msSiteModeAddThumbBarButton('icons/ie9jump.ico', 'Jump');
+                ieBtnRight = window.external.msSiteModeAddThumbBarButton('icons/ie9right.ico', 'Right');
 
-function processSelection(btn) {
-    switch (btn.buttonID) {
-        case ieBtnLeft:
-            leftKey();
-            break;
+                window.external.msSiteModeShowThumbBar();
+            }
+            catch(e) { }
+        }
 
-        case ieBtnRight:
-            rightKey();
-            break;
+        function processSelection(btn) {
+            switch (btn.buttonID) {
+                case ieBtnLeft:
+                    leftKey();
+                    break;
 
-        case ieBtnJump:
-            jumpKey();
-            break;
-    }
-}
-//********************************************************
-</script>
+                case ieBtnRight:
+                    rightKey();
+                    break;
+
+                case ieBtnJump:
+                    jumpKey();
+                    break;
+            }
+        }
+
+
+        //********************************************************
+    </script>
 </head>
-	
-<body onload="setIE9PinnedModeExperience();">
-	<div class="canvasHolder" style="width:100%">
-		<canvas id="platformerCanvas" width="960" height="640" style="background:#000033 url(img/Backgrounds/Layer0_0.png) repeat-x;" style="margin: 0 auto;">
-			Your browser doesn't support canvas. Please download IE9+ on <a href="http://ie.microsoft.com/testdrive">IE Test Drive</a> 
-		</canvas>
-	</div>
-	<button id="Start" onclick=restart();>(Re)Start</button><button id="Left" onclick=leftKey();>&lt;--</button>
-	<button id="Jump" onclick=jumpKey();>jump (W)</button><button id="Right" onclick=rightKey();>--&gt;</button>
-	<input id="handleShadows" type="checkbox" checked="checked" onclick="changeShadows();">Shadows (must restart)</input>
-    <input id="useRAF" type="checkbox" checked="checked" onclick="changeRAF();">requestAnimationFrame</input>
+
+<body onload="setIE9PinnedModeExperience(); restart();" style="background:#000426 url(img/Backgrounds/Layer0_0.png)">
+<div style="margin: 0 auto; position: relative; width: 960px;">
+    <!--<div id="menu"><a href="#" onclick="restart();"><img src="img/Backgrounds/welcome.png" alt=""></a></div>-->
+    <div id="screen" class="canvasHolder" style="display: block;">
+        <canvas id="platformerCanvas" width="960" height="640" style="background:#000426 url(img/Backgrounds/Layer0_0.png) repeat-x; ">
+            Your browser doesn't support canvas.
+        </canvas>
+    </div>
+</div>
 </body>
 </html>

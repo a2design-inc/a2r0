@@ -49,12 +49,12 @@ function ContentManager(stage, width, height) {
     this.imgBlockA1 = new Image();
     this.imgBlockA2 = new Image();
     this.imgBlockA3 = new Image();
-    this.imgBlockA4 = new Image();
-    this.imgBlockA5 = new Image();
-    this.imgBlockA6 = new Image();
-    this.imgBlockB0 = new Image();
     this.imgBlockB1 = new Image();
-    this.imgExit = new Image();
+    this.imgBlockB2 = new Image();
+    this.imgBlockB3 = new Image();
+    this.imgExit1 = new Image();
+    this.imgExit2 = new Image();
+    this.imgExit3 = new Image();
     this.imgPlatform1 = new Image();
     this.imgPlatform2 = new Image();
     this.imgPlatform3 = new Image();
@@ -154,16 +154,16 @@ function ContentManager(stage, width, height) {
         SetDownloadParameters(this.imgBlockA1, "img/Tiles/BlockA1.png");
         SetDownloadParameters(this.imgBlockA2, "img/Tiles/BlockA2.png");
         SetDownloadParameters(this.imgBlockA3, "img/Tiles/BlockA3.png");
-        SetDownloadParameters(this.imgBlockA4, "img/Tiles/BlockA4.png");
-        SetDownloadParameters(this.imgBlockA5, "img/Tiles/BlockA5.png");
-        SetDownloadParameters(this.imgBlockA6, "img/Tiles/BlockA6.png");
-        SetDownloadParameters(this.imgBlockB0, "img/Tiles/BlockB0.png");
+
         SetDownloadParameters(this.imgBlockB1, "img/Tiles/BlockB1.png");
+        SetDownloadParameters(this.imgBlockB2, "img/Tiles/BlockB2.png");
+        SetDownloadParameters(this.imgBlockB3, "img/Tiles/BlockB3.png");
+
         SetDownloadParameters(this.imgGem, "img/Tiles/Gem.png");
 
-        SetDownloadParameters(this.imgExit, "img/Tiles/Exit1.png");
-        SetDownloadParameters(this.imgExit, "img/Tiles/Exit2.png");
-        SetDownloadParameters(this.imgExit, "img/Tiles/Exit3.png");
+        SetDownloadParameters(this.imgExit1, "img/Tiles/Exit1.png");
+        SetDownloadParameters(this.imgExit2, "img/Tiles/Exit2.png");
+        SetDownloadParameters(this.imgExit3, "img/Tiles/Exit3.png");
 
         SetDownloadParameters(this.imgPlatform1, "img/Tiles/Platform1.png");
         SetDownloadParameters(this.imgPlatform2, "img/Tiles/Platform2.png");
