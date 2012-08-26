@@ -289,34 +289,34 @@
         var levelIndex = platformerGame.levelIndex + 1;
 
 //        //Platform
-//        if (baseName == 'Platform') {
-//
-//            if (levelIndex < 3) {
-//                tileName = baseName + levelIndex;
-//            } else {
-//                tileName = baseName + '2';
-//            }
-////            tileName = baseName + '1';
-//
-//        }
+        if (baseName == 'Platform') {
+
+            if (levelIndex < 3) {
+                tileName = baseName + levelIndex;
+            } else {
+                tileName = baseName + '2';
+            }
+//            tileName = baseName + '1';
+
+        }
 //        //BlockA
-//        if (baseName == 'BlockA') {
-//            if (levelIndex < 3) {
-//                tileName = baseName + levelIndex;
-//            } else {
-//                tileName = baseName + '3';
-//            }
-//        }
+        if (baseName == 'BlockA') {
+            if (levelIndex < 3) {
+                tileName = baseName + levelIndex;
+            } else {
+                tileName = baseName + '3';
+            }
+        }
 //
 //        //BlockB
-//        if (baseName == 'BlockB') {
-//            if (levelIndex < 3) {
-//                tileName = baseName + levelIndex;
-//            } else {
-//                tileName = baseName + '3';
-//            }
-//        }
-        tileName = baseName + '1';
+        if (baseName == 'BlockB') {
+            if (levelIndex < 3) {
+                tileName = baseName + levelIndex;
+            } else {
+                tileName = baseName + '3';
+            }
+        }
+
         return this.LoadNamedTile(tileName , collision, x, y);
     };
 
