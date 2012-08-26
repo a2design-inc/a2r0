@@ -46,7 +46,6 @@ function ContentManager(stage, width, height) {
     this.imgMonsterF = new Image();
     this.imgMonsterL = new Image();
     this.imgMonsterH = new Image();
-    this.imgBlockA0 = new Image();
     this.imgBlockA1 = new Image();
     this.imgBlockA2 = new Image();
     this.imgBlockA3 = new Image();
@@ -56,7 +55,9 @@ function ContentManager(stage, width, height) {
     this.imgBlockB0 = new Image();
     this.imgBlockB1 = new Image();
     this.imgExit = new Image();
-    this.imgPlatform = new Image();
+    this.imgPlatform1 = new Image();
+    this.imgPlatform2 = new Image();
+    this.imgPlatform3 = new Image();
     this.imgRobot = new Array(
         new Image(),
         new Image(),
@@ -150,7 +151,6 @@ function ContentManager(stage, width, height) {
         SetDownloadParameters(this.loseOverlay, "overlays/you_lose.png");
         SetDownloadParameters(this.diedOverlay, "overlays/you_died.png");
 
-        SetDownloadParameters(this.imgBlockA0, "img/Tiles/BlockA0.png");
         SetDownloadParameters(this.imgBlockA1, "img/Tiles/BlockA1.png");
         SetDownloadParameters(this.imgBlockA2, "img/Tiles/BlockA2.png");
         SetDownloadParameters(this.imgBlockA3, "img/Tiles/BlockA3.png");
@@ -160,8 +160,14 @@ function ContentManager(stage, width, height) {
         SetDownloadParameters(this.imgBlockB0, "img/Tiles/BlockB0.png");
         SetDownloadParameters(this.imgBlockB1, "img/Tiles/BlockB1.png");
         SetDownloadParameters(this.imgGem, "img/Tiles/Gem.png");
-        SetDownloadParameters(this.imgExit, "img/Tiles/Exit.png");
-        SetDownloadParameters(this.imgPlatform, "img/Tiles/Platform.png");
+
+        SetDownloadParameters(this.imgExit, "img/Tiles/Exit1.png");
+        SetDownloadParameters(this.imgExit, "img/Tiles/Exit2.png");
+        SetDownloadParameters(this.imgExit, "img/Tiles/Exit3.png");
+
+        SetDownloadParameters(this.imgPlatform1, "img/Tiles/Platform1.png");
+        SetDownloadParameters(this.imgPlatform2, "img/Tiles/Platform2.png");
+        SetDownloadParameters(this.imgPlatform3, "img/Tiles/Platform3.png");
 
         Ticker.addListener(this);
         Ticker.setInterval(50);

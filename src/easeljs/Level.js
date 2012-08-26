@@ -143,7 +143,7 @@
 
             // Floating platform                                                                                      
             case '-':
-                return this.LoadNamedTile("Platform", Enum.TileCollision.Platform, x, y);
+                return this.LoadLevelSpecifiedStaff("Platform", Enum.TileCollision.Platform, x, y);
                 break;
 
             // Various enemies                                                                                      
@@ -184,10 +184,8 @@
                 return this.LoadVarietyTile("BlockB", 2, Enum.TileCollision.Platform, x, y);
                 break;
 
-            // Passable block                                                                                      
-            case ':':
-                return this.LoadVarietyTile("BlockB", 2, Enum.TileCollision.Passable, x, y);
-                break;
+
+
 
             // Player 1 start point                                                                                      
             case '1':
@@ -197,7 +195,11 @@
 
             // Impassable block                                                                                      
             case '#':
-                return this.LoadVarietyTile("BlockA", 1, Enum.TileCollision.Impassable, x, y);
+                return this.LoadLevelSpecifiedStaff("BlockA", Enum.TileCollision.Impassable, x, y);
+                break;
+
+            case ':':
+                return this.LoadLevelSpecifiedStaff("BlockB", Enum.TileCollision.Impassable, x, y);
                 break;
 
             // Checkpoint
@@ -219,16 +221,20 @@
     /// <returns>The new tile.</returns>
     Level.prototype.LoadNamedTile = function (name, collision, x, y) {
         switch (name) {
-            case "Platform":
-                return new Tile(this.levelContentManager.imgPlatform, collision, x, y);
+            case "Platform1":
+                return new Tile(this.levelContentManager.imgPlatform1, collision, x, y);
+                break;
+
+            case "Platform2":
+                return new Tile(this.levelContentManager.imgPlatform2, collision, x, y);
+                break;
+
+            case "Platform3":
+                return new Tile(this.levelContentManager.imgPlatform3, collision, x, y);
                 break;
 
             case "Exit":
                 return new Tile(this.levelContentManager.imgExit, collision, x, y);
-                break;
-
-            case "BlockA0":
-                return new Tile(this.levelContentManager.imgBlockA0, collision, x, y);
                 break;
 
             case "BlockA1":
@@ -278,6 +284,47 @@
     Level.prototype.LoadVarietyTile = function (baseName, variationCount, collision, x, y) {
         var index = Math.floor(Math.random() * (variationCount - 1));
         return this.LoadNamedTile(baseName + index, collision, x, y);
+    };
+
+
+    Level.prototype.LoadLevelSpecifiedStaff= function (baseName, collision, x, y) {
+
+        var tileName = '';
+        var levelIndex = platformerGame.levelIndex + 1;
+
+        //Platform
+        if (baseName == 'Platform') {
+
+            if (levelIndex < 3) {
+                tileName = baseName + levelIndex;
+            } else {
+                tileName = baseName + '2';
+            }
+//            tileName = baseName + '1';
+
+        }
+
+
+        //BlockA
+        if (baseName == 'BlockA') {
+            if (levelIndex < 3) {
+                tileName = baseName + levelIndex;
+            } else {
+                tileName = baseName + '3';
+            }
+        }
+
+        //BlockB
+        if (baseName == 'BlockB') {
+            if (levelIndex < 3) {
+                tileName = baseName + levelIndex;
+            } else {
+                tileName = baseName + '3';
+            }
+        }
+        //Exit
+            console.log(tileName);
+        return this.LoadNamedTile(tileName , collision, x, y);
     };
 
     /// <summary>
@@ -510,7 +557,6 @@
             this.levelStage.setTransform(-this.Hero.x+480);
         }
 
-        console.log(this.Hero.currentCheckpoint);
         if (this.Hero.x >= this.Checkpoints[this.Hero.nextCheckpoint]*32) {
             this.Hero.currentCheckpoint++;
             this.Hero.nextCheckpoint++;
