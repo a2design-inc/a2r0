@@ -425,8 +425,10 @@
 
     Player.prototype.fireBullet = function() {
         // create the bullet
-        var position = {x: this.x, y: this.y};
-        this.level.createBullet(position, this.lastdirection);
+        if (this.currentCheckpoint >= 3) {
+            var position = {x: this.x, y: this.y};
+            this.level.createBullet(position, this.lastdirection);
+        }
     }
 
     window.Player = Player;
