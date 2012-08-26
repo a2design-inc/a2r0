@@ -106,8 +106,8 @@
     /// Gets a rectangle which bounds this enemy in world space.
     /// </summary>
     Enemy.prototype.BoundingRectangle = function () {
-        var left = parseInt(Math.round(this.x - 32) + localBounds.x);
-        var top = parseInt(Math.round(this.y - 64) + localBounds.y);
+        var left = parseInt(Math.round(this.x - 50) + localBounds.x);
+        var top = parseInt(Math.round(this.y - 110) + localBounds.y);
 
         return new XNARectangle(left, top, localBounds.width, localBounds.height);
     };
