@@ -18,7 +18,7 @@
     //unique to avoid overiding base class
     Bullet.prototype.BitmapAnimation_initialize = Bullet.prototype.initialize;
 
-    Bullet.prototype.initialize = function(level, position, direction, texture) {
+    Bullet.prototype.initialize = function(level, position, direction) {
 
         var width;
         var left;
@@ -26,14 +26,29 @@
         var top;
         var frameWidth;
         var frameHeight;
+        var texture;
 
         this.level = level;
         this.x = position.x;
         this.y = position.y-48;
 
+        texture = this.level.levelContentManager.imgBullet[platformerGame.levelIndex];
+        height = 16;
+
+        switch (platformerGame.levelIndex) {
+            case 0:
+                width = 16;
+                break;
+            case 1:
+                width = 32;
+                break;
+            case 2:
+                width = 32;
+                break;
+        }
         var localSpriteSheet = new SpriteSheet({
             images: [texture], //image to use
-            frames: { width: 16, height: 16, regX: 8, regY: 16 },
+            frames: { width: width, height: height, regX: width/2, regY: height },
             animations: {
                 shoot: [0, 3, "shoot", 4]
             }
@@ -47,9 +62,9 @@
         frameHeight = this.spriteSheet.getFrame(0).rect.height;
 
         // Calculate bounds within texture size.
-        width = parseInt(frameWidth * 1);
+        //width = parseInt(frameWidth * 1);
         left = parseInt((frameWidth - width) / 2);
-        height = parseInt(frameWidth * 1);
+        //height = parseInt(frameWidth * 1);
         top = parseInt(frameHeight - height);
         localBounds = new XNARectangle(left, top, width, height);
 

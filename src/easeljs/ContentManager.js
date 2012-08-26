@@ -66,6 +66,8 @@ function ContentManager(stage, width, height) {
         new Image()
     );
     this.imgBullet = new Array(
+        new Image(),
+        new Image(),
         new Image()
     );
     this.imgGem = new Image();
@@ -137,6 +139,8 @@ function ContentManager(stage, width, height) {
         SetDownloadParameters(this.imgRobot[4], "img/Robot4.png");
 
         SetDownloadParameters(this.imgBullet[0], "img/Bullet0.png");
+        SetDownloadParameters(this.imgBullet[1], "img/Bullet1.png");
+        SetDownloadParameters(this.imgBullet[2], "img/Bullet2.png");
 
         SetDownloadParameters(this.imgMonsterA, "img/MonsterA.png");
         SetDownloadParameters(this.imgMonsterB, "img/MonsterB.png");
