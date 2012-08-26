@@ -377,7 +377,7 @@
 
         // Playing the proper animation based on
         // the current direction of our hero
-        if (this.direction === 1) {
+        if (this.lastdirection === 1) {
             this.gotoAndPlay("die_h");
         }
         else {
