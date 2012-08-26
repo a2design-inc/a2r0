@@ -35,7 +35,7 @@
             images: [texture], //image to use
             frames: { width: 16, height: 16, regX: 8, regY: 16 },
             animations: {
-                shoot: [0, 0, "shoot", 1]
+                shoot: [0, 3, "shoot", 4]
             }
         });
 
