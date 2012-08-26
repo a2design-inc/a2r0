@@ -555,7 +555,22 @@
     };
 
     Level.prototype.UpdateBullets = function () {
+        var internalExit = false;
         for (var i = 0; i < this.bulletStream.length; i++) {
+            internalExit = false;
+            for (var j = 0; j < this.Enemies.length; j++) {
+                if (this.Hero.IsAlive && this.Enemies[j].BoundingRectangle().Intersects(this.bulletStream[i].BoundingRectangle())) {
+                    console.log("KA BOOM");
+                    this.levelStage.removeChild(this.bulletStream[i]);
+                    this.bulletStream.splice(i, 1);
+                    this.Enemies[j].isDead = true;
+                    this.levelStage.removeChild(this.Enemies[j]);
+                    i--;
+                    internalExit = true;
+                }
+                if(internalExit) break;
+            }
+            if(internalExit) break;
             this.bulletStream[i].tick();
         }
     };
@@ -584,11 +599,15 @@
         this.Hero.Reset(this.Start);
     };
 
-    Level.prototype.createBullet = function(position) {
+    Level.prototype.createBullet = function(position, direction, texture) {
         var len = this.bulletStream.length;
 
-        if (len <= 1)   {
-            this.bulletStream.push(new Bullet(this, position , 1, '#FF0000'));
+        if (len <= 2)   {
+            var bullet = new Bullet(this, position , direction, texture);
+            this.bulletStream.push(bullet);
+            //console.log(this.bulletStream);
+            this.levelStage.addChild(bullet);
+
             // play the shot sound
             this.levelContentManager.playerFire.play();
         } else {

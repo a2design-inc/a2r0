@@ -63,6 +63,7 @@
         this.x = position.x;
         this.y = position.y;
         this.level = level;
+        this.isDead = false;
 
         /// <summary>
         /// How long this enemy has been waiting before turning around.
