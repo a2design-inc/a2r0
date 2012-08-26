@@ -3,3 +3,13 @@ Blocks: # :
 
 Globals:
 level index:  platformerGame.levelIndex
+
+rockets tiles
+
+left turbo BlockLT
+center turbo BlockCT
+right turbo BlockRT
+
+left turbo BlockLT
+center turbo BlockCT
+right turbo BlockRT

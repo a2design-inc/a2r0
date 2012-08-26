@@ -454,7 +454,6 @@
     Level.prototype.CreateAndAddRandomBackground = function () {
         // random number between 0 & 2.
 
-
         if (platformerGame.levelIndex < 3 ) {
             this.backgroundSeq = new Bitmap(this.levelContentManager.imgBackgroundLayers[platformerGame.levelIndex]);
         } else {
