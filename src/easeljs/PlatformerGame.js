@@ -274,7 +274,7 @@
                 this.level.Hero.direction = 1;
                 this.level.Hero.lastdirection = 1;
                 break;
-            case KEYCODE_SPACE:
+            case KEYCODE_UP:
                 this.level.Hero.isJumping = true;
                 this.continuePressed = true;
                 break;
@@ -299,7 +299,7 @@
                 this.level.Hero.lastdirection = 1;
                 this.level.Hero.direction = 0;
                 break;
-            case KEYCODE_SPACE:
+            case KEYCODE_UP:
                 this.continuePressed = false;
                 break;
         }
