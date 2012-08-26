@@ -107,12 +107,12 @@
             timeRemainingText = new Text("TIME: ", "bold 14px Arial", "yellow");
             timeRemainingText.x = 10;
             timeRemainingText.y = 20;
-            this.platformerGameStage.addChild(timeRemainingText);
+//            this.platformerGameStage.addChild(timeRemainingText);
 
             scoreText = new Text("SCORE: 0", "bold 14px Arial", "yellow");
             scoreText.x = 10;
             scoreText.y = 34;
-            this.platformerGameStage.addChild(scoreText);
+//            this.platformerGameStage.addChild(scoreText);
         }
 
         if (this.level.TimeRemaining < WarningTime && !this.level.ReachedExit) {

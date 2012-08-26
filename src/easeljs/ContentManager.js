@@ -170,15 +170,6 @@ function ContentManager(stage, width, height) {
         SetDownloadParameters(this.imgBlockB2, "img/Tiles/BlockB2.png");
         SetDownloadParameters(this.imgBlockB3, "img/Tiles/BlockB3.png");
 
-
-        SetDownloadParameters(this.imgBlockLT, "img/Tiles/BlockLT.png");
-        SetDownloadParameters(this.imgBlockCT, "img/Tiles/BlockCT.png");
-        SetDownloadParameters(this.imgBlockRT, "img/Tiles/BlockRT.png");
-
-        SetDownloadParameters(this.imgBlockLF, "img/Tiles/BlockLF.png");
-        SetDownloadParameters(this.imgBlockCF, "img/Tiles/BlockCF.png");
-        SetDownloadParameters(this.imgBlockRF, "img/Tiles/BlockRF.png");
-
         SetDownloadParameters(this.imgGem, "img/Tiles/Gem.png");
 
         SetDownloadParameters(this.imgExit1, "img/Tiles/Exit1.png");
